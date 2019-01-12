@@ -13,12 +13,4 @@ node_modules
 **/node_modules
 */node_modules
 
-build/bundle*.js
-build/version.json
-src/components
-src/hooks
-src/routes
-src/schema
-src/utils
-src/var
-src/theme
+

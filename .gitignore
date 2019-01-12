@@ -38,4 +38,4 @@ client-web/src/utils
 client-web/src/var
 client-web/src/theme
 
-server-koa2/Config.ts
+server-koa2/src/server.ts

@@ -17,6 +17,13 @@ if [ ! -d client-web/build ]; then
     cp -r client-web/build.example client-web/build
 fi
 
+if [ ! -d client-web/theme/current ]; then
+    cd client-web/src/theme/ && ln -s bubbly current && cd ../../../
+fi
+
+if [ ! -d client-web/var ]; then
+    cp -r client-web/src/var.example client-web/src/var
+fi
 
 if [ -x .env ]; then
   . .env
