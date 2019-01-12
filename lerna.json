@@ -1,0 +1,23 @@
+{
+  "packages": [
+    ".",
+    "client-web",
+    "server-koa2"
+  ],
+  "version": "0.0.1",
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "ignored-file",
+        "*.md"
+      ]
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    }
+  }
+}

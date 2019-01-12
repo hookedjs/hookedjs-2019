@@ -1,0 +1,42 @@
+{
+  "name": "server-koa",
+  "author": "Brian Dombrowski <bdombro@gmail.com>",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "if [ -x ../.env ]; then . ../.env; fi; NODE_ENV=production ts-node -r tsconfig-paths/register --transpileOnly src/server.ts",
+    "watch": "if [ -x ../.env ]; then . ../.env; fi; NODE_ENV=development ts-node-dev -r tsconfig-paths/register --transpileOnly src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@graphile-contrib/pg-simplify-inflector": "^4.0.0-alpha.0",
+    "@koa/cors": "2.2.1",
+    "graphile-build-pg": "^4.2.0",
+    "graphile-utils": "4.0.0-rc.3",
+    "http-proxy": "1.17.0",
+    "koa": "2.5.1",
+    "koa-bodyparser": "4.2.1",
+    "koa-bunyan-logger": "2.1.0",
+    "koa-compress": "3.0.0",
+    "koa-helmet": "4.0.0",
+    "koa-jwt": "3.3.2",
+    "koa-passport": "4.1.0",
+    "koa-route": "3.2.0",
+    "koa-session": "5.8.1",
+    "koa-static": "5.0.0",
+    "passport-github": "1.1.0",
+    "pg": "7.4.3",
+    "postgraphile": "4.2.0",
+    "postgraphile-plugin-connection-filter": "^1.0.0-beta.25",
+    "ts-node": "^7.0.1",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "tsconfig-paths": "^3.7.0",
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "1.17.5"
+  }
+}
