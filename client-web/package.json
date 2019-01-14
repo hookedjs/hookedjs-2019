@@ -10,9 +10,9 @@
     "types:watch": "tsc --noEmit --watch",
     "watch:bak": "npm-run-all --parallel types:watch webpack:watch",
     "watch": "npm-run-all --parallel webpack:watch",
-    "webpack:watch": "webpack-dev-server --mode development --port 3001 --progress --inline --hot --colors",
+    "webpack:watch": "yarn clean && webpack-dev-server --mode development --port 3001 --progress --inline --hot --colors",
     "build": "yarn clean && webpack -p --progress --colors --display=minimal",
-    "clean": "rm build/bundle*.js",
+    "clean": "if [ -d ./build ]; then rm -rf build; fi; cp -rf src/static build",
     "clear-cache": "gulp clear-cache"
   },
   "devDependencies": {
