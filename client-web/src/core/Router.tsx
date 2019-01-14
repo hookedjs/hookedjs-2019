@@ -4,13 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 import * as qs from "query-string";
 import { EventStore } from "~/core/state/EventStore";
 
-import { LoadingComponent, ErrorComponent, allRoutes } from "~/var/routes.tsx";
+import { LoadingComponent, ErrorComponent, Routes } from "~/var/routing.tsx";
 import { TimeNow } from "~/core/utils/TimeNow";
+import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
 export interface RouteListItem {
+  name: string;
   path: string;
   layout: React.ComponentClass;
   view: React.LazyExoticComponent<any>;
+  icon: React.ComponentType<SvgIconProps>;
 }
 
 const RouteInnerWrapper = ({
@@ -49,7 +52,7 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        {allRoutes.map((route, routeIndex) => (
+        {Object.values(Routes).map((route, routeIndex) => (
           <Route
             key={`route-${route.path}`}
             exact

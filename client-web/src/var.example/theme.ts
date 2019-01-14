@@ -17,58 +17,58 @@ export const HeaderLinks = [
 export const SidebarNavLinks = [
   { path: "/admin", name: "Dashboard", icon: DashboardIcon },
   {
-    path: "/admin/demo",
+    path: "/bubbly",
     name: "Demo",
     icon: AppsIcon,
     views: [
-      { path: "/admin/demo/register", name: "Register", mini: "RE" },
-      { path: "/admin/demo/login", name: "Login", mini: "LO" },
-      { path: "/admin/demo/lock", name: "Lock", mini: "LK" },
-      { path: "/admin/demo/user/profile", name: "User Profile", mini: "UP" },
-      { path: "/admin/demo/dashboard", name: "Dashboard", mini: "TP" },
-      { path: "/admin/demo/timeline", name: "Timeline", mini: "TP" },
-      { path: "/admin/demo/rtl", name: "RTL Support", mini: "RS" },
-      { path: "/admin/demo/pricing", name: "Pricing", mini: "PP" },
-      { path: "/admin/demo/buttons", name: "Buttons", mini: "B" },
-      { path: "/admin/demo/grid-system", name: "Grid System", mini: "GS" },
-      { path: "/admin/demo/panels", name: "Panels", mini: "P" },
-      { path: "/admin/demo/sweet-alert", name: "Sweet Alert", mini: "SA" },
-      { path: "/admin/demo/notifications", name: "Notifications", mini: "N" },
-      { path: "/admin/demo/icons", name: "Icons", mini: "I" },
-      { path: "/admin/demo/typography", name: "Typography", mini: "T" },
-      { path: "/admin/demo/regular-forms", name: "Regular Forms", mini: "RF" },
+      { path: "/bubbly/register", name: "Register", mini: "RE" },
+      { path: "/bubbly/login", name: "Login", mini: "LO" },
+      { path: "/bubbly/lock", name: "Lock", mini: "LK" },
+      { path: "/bubbly/user/profile", name: "User Profile", mini: "UP" },
+      { path: "/bubbly/dashboard", name: "Dashboard", mini: "TP" },
+      { path: "/bubbly/timeline", name: "Timeline", mini: "TP" },
+      { path: "/bubbly/rtl", name: "RTL Support", mini: "RS" },
+      { path: "/bubbly/pricing", name: "Pricing", mini: "PP" },
+      { path: "/bubbly/buttons", name: "Buttons", mini: "B" },
+      { path: "/bubbly/grid-system", name: "Grid System", mini: "GS" },
+      { path: "/bubbly/panels", name: "Panels", mini: "P" },
+      { path: "/bubbly/sweet-alert", name: "Sweet Alert", mini: "SA" },
+      { path: "/bubbly/notifications", name: "Notifications", mini: "N" },
+      { path: "/bubbly/icons", name: "Icons", mini: "I" },
+      { path: "/bubbly/typography", name: "Typography", mini: "T" },
+      { path: "/bubbly/regular-forms", name: "Regular Forms", mini: "RF" },
       {
-        path: "/admin/demo/extended-forms",
+        path: "/bubbly/extended-forms",
         name: "Extended Forms",
         mini: "EF"
       },
       {
-        path: "/admin/demo/validation-forms",
+        path: "/bubbly/validation-forms",
         name: "Validation Forms",
         mini: "VF"
       },
-      { path: "/admin/demo/wizard", name: "Wizard", mini: "W" },
+      { path: "/bubbly/wizard", name: "Wizard", mini: "W" },
       {
-        path: "/admin/demo/regular-tables",
+        path: "/bubbly/regular-tables",
         name: "Regular Tables",
         mini: "RT"
       },
       {
-        path: "/admin/demo/extended-tables",
+        path: "/bubbly/extended-tables",
         name: "Extended Tables",
         mini: "ET"
       },
-      { path: "/admin/demo/react-tables", name: "React Tables", mini: "RT" },
-      { path: "/admin/demo/google-maps", name: "Google Maps", mini: "GM" },
+      { path: "/bubbly/react-tables", name: "React Tables", mini: "RT" },
+      { path: "/bubbly/google-maps", name: "Google Maps", mini: "GM" },
       {
-        path: "/admin/demo/full-screen-maps",
+        path: "/bubbly/full-screen-maps",
         name: "Full Screen Map",
         mini: "FSM"
       },
-      { path: "/admin/demo/vector-maps", name: "Vector Map", mini: "VM" },
-      { path: "/admin/demo/widgets", name: "Widgets", icon: WidgetsIcon },
-      { path: "/admin/demo/charts", name: "Charts", icon: TimelineIcon },
-      { path: "/admin/demo/calendar", name: "Calendar", icon: DateRangeIcon }
+      { path: "/bubbly/vector-maps", name: "Vector Map", mini: "VM" },
+      { path: "/bubbly/widgets", name: "Widgets", icon: WidgetsIcon },
+      { path: "/bubbly/charts", name: "Charts", icon: TimelineIcon },
+      { path: "/bubbly/calendar", name: "Calendar", icon: DateRangeIcon }
     ]
   }
 ];

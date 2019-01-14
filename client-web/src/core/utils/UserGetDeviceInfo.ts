@@ -1,5 +1,5 @@
 import { Device } from "~/core/schema/Device";
-import { App } from "~/var/app";
+import { App } from "~/var/config";
 
 export interface GeoIntel {
   ip: "71.179.91.210";

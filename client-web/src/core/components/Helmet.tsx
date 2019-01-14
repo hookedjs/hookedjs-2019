@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
-import { App } from "~/var/app";
+import { Config } from "~/var/config";
 
 export class HelmetDefault extends React.PureComponent<{ title?: string }> {
   render() {
@@ -9,7 +9,7 @@ export class HelmetDefault extends React.PureComponent<{ title?: string }> {
     return (
       <Helmet>
         <title>
-          {App.appName}
+          {Config.appName}
           {title ? ` | ${title}` : ""}
         </title>
         <link rel="canonical" href={window.location.href} />

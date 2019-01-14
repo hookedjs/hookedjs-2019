@@ -9,7 +9,7 @@ import { HelmetDefault } from "./components/Helmet";
 RegisterServerWorker();
 
 // Load css
-import "~/theme/current/scss/main.scss?v=1.4.0";
+import "~/themes/bubbly/scss/main.scss?v=1.4.0";
 
 // HOt reload logging level and pureSFC makes hot reload play nice with hooks
 // @ts-ignore: pureSFC isn't found for some reason
