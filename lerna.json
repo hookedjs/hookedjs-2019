@@ -2,6 +2,7 @@
   "packages": [
     ".",
     "client-web",
+    "client-web/src/themes/*",
     "server-koa2"
   ],
   "version": "0.0.1",

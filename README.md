@@ -33,3 +33,7 @@ Koa2
 Koa 2 only has "experimental" support in PostGraphile officially, but if you
 face any issues please file them against PostGraphile with full reproduction
 instructions - we're trying to elevate Koa to full support status.
+
+License
+---
+Apache 2.0

@@ -9,7 +9,7 @@
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
 
-import { Config } from "~/var/config";
+import { WebDomain } from "~/var/config";
 
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
@@ -29,7 +29,7 @@ export function RegisterServerWorker(): void {
   ) {
     // The URL constructor is available in all browsers that support SW.
     // @ts-ignore: Ignore missing DOM window.location property
-    const publicUrl = new URL(Config.webDomain, window.location);
+    const publicUrl = new URL(WebDomain, window.location);
     // @ts-ignore: Ignore missing DOM window.location property
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin

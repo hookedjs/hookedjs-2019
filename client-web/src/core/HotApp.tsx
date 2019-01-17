@@ -5,11 +5,13 @@ import { RegisterServerWorker } from "./RegisterServiceWorker";
 import { Router } from "./Router";
 import { HelmetDefault } from "./components/Helmet";
 
+// Import config to pull in
+import {AppName} from "~/var/config";
+
+console.log(`HotApp: Starting ${AppName}`);
+
 // Service Worker
 RegisterServerWorker();
-
-// Load css
-import "~/themes/bubbly/scss/main.scss?v=1.4.0";
 
 // HOt reload logging level and pureSFC makes hot reload play nice with hooks
 // @ts-ignore: pureSFC isn't found for some reason

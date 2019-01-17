@@ -1,0 +1,11 @@
+{
+  "name": "bubbly-theme-child",
+  "author": "Brian Dombrowski <bdombro@gmail.com>",
+  "private": false,
+  "version": "0.0.1",
+  "scripts": {},
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

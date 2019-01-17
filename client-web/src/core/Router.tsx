@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import * as qs from "query-string";
 import { EventStore } from "~/core/state/EventStore";
 
-import { LoadingComponent, ErrorComponent, Routes } from "~/var/routing.tsx";
+import {Routes, ErrorComponent, LoadingComponent} from "~/var/config";
 import { TimeNow } from "~/core/utils/TimeNow";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
 

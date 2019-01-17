@@ -59,10 +59,7 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
     "webpack-hot-middleware": "^2.24.2",
-    "webpack-version-file-plugin": "^0.3.3",
-    "@types/googlemaps": "3.30.13",
-    "@types/markerclustererplus": "2.1.33",
-    "@types/react-big-calendar": "^0.20.2"
+    "webpack-version-file-plugin": "^0.3.3"
   },
   "dependencies": {
     "apollo-boost": "^0.1.23",
@@ -88,19 +85,7 @@
     "react-scripts": "1.1.5",
     "react-swipeable-views": "0.13.0",
     "react-tagsinput": "3.19.0",
-    "react-test-renderer": "16.3.2",
-    "@material-ui/core": "3.1.1",
-    "@material-ui/icons": "3.0.1",
-    "chartist": "0.10.1",
-    "clappr": "^0.2.98",
-    "nouislider": "12.0.0",
-    "react-big-calendar": "0.20.1",
-    "react-bootstrap-sweetalert": "4.4.1",
-    "react-chartist": "0.13.1",
-    "react-google-maps": "9.4.5",
-    "react-jvectormap": "0.0.3",
-    "react-share": "^2.3.0",
-    "react-table": "6.8.6"
+    "react-test-renderer": "16.3.2"
   },
   "engines": {
     "node": ">=8.0.0",

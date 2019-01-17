@@ -13,6 +13,7 @@
  */
 
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const VersionFile = require('webpack-version-file-plugin');
 const WebpackAutoInject = require('webpack-auto-inject-version');
@@ -20,7 +21,8 @@ const WebpackAutoInject = require('webpack-auto-inject-version');
 
 // variables
 const sourcePath = path.join(__dirname, './src');
-const npmPath = path.join(__dirname, './node_modules');
+const themesPath = path.join(__dirname, './src/themes');
+const themes = fs.readdirSync(themesPath);
 const outPath = path.join(__dirname, './build');
 
 // TODO: After removing bootstrap dependency, check if lodash is still being depended on :-(.
@@ -41,10 +43,12 @@ module.exports = {
     extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
     modules: [
       sourcePath,
-      npmPath
+      path.join(__dirname, './node_modules'),
+      ...themes.map((t) => path.resolve(themesPath, `./${t}/node_modules`)),
     ],
     alias: {
-      "~": sourcePath
+      "~": sourcePath,
+      ...themes.reduce((a,t) => {a[`@${t}`] = path.join(themesPath, `./${t}/src`); return a;}, {}),
     }
   },
   module: {

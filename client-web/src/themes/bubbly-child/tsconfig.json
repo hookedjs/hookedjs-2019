@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["../../*"],
+      "@bubbly/*": ["../bubbly/src/*"],
+      "@bubbly-child/*": ["src/*"],
+      "*": ["../bubbly/node_modules/*"]
+    }
+  }
+}

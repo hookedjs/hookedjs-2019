@@ -1,5 +1,5 @@
 import { Device } from "~/core/schema/Device";
-import { App } from "~/var/config";
+import { IpgeolocationioKey } from "~/var/config";
 
 export interface GeoIntel {
   ip: "71.179.91.210";
@@ -39,10 +39,9 @@ export interface GeoIntel {
 }
 
 export const UserGetDeviceInfo = (): Promise<Device> => {
+  if (!IpgeolocationioKey) throw new Error("UserGetDeviceInfo: Cannot call without Config.IpgeolocationioKey");
   return fetch(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=${
-      App.integrations["ipgeolocation.io"]
-    }`,
+    `https://api.ipgeolocation.io/ipgeo?apiKey=${IpgeolocationioKey}`,
     { method: "get" }
   )
     .then(async response => {
