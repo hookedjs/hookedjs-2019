@@ -12,7 +12,7 @@ export const ButtonsStyle = {
     fontSize: "18px"
   },
   cardHeader: {
-    zIndex: "3"
+    zIndex: 3
   },
   cardContentLeft: {
     padding: "15px 20px 15px 0px",

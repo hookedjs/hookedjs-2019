@@ -25,7 +25,7 @@ import GridContainer from "@bubbly/components/layouts/Grid/GridContainer";
 import GridItem from "@bubbly/components/layouts/Grid/GridItem";
 import CustomDropdown from "@bubbly/components/modules/Dropdown/Dropdown";
 import LinearProgress from "@bubbly/components/modules/LinearProgress/LinearProgress";
-import ImageUpload from "@bubbly/components/modules/CustomUpload/ImageUpload";
+import ImageUpload from "@bubbly/components/modules/Upload/ImageUpload";
 import Card from "@bubbly/components/modules/Card/Card";
 import CardHeader from "@bubbly/components/modules/Card/CardHeader";
 import CardIcon from "@bubbly/components/modules/Card/CardIcon";

@@ -7,7 +7,7 @@
 import * as React from "react";
 import { Debounce } from "~/core/utils/Debounce";
 
-export function useWindowSize() {
+export function UseWindowSize() {
   const getCurrentSize = () => {
     return {
       width: window.innerWidth,

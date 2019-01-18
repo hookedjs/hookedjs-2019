@@ -7,7 +7,7 @@ import * as React from "react";
 import { Debounce } from "~/core/utils/Debounce";
 import { StringContains } from "~/core/utils/PrimitiveUtils";
 
-export function useCssBreakPoint() {
+export function UseCssBreakPoint() {
   const getCurrentBreakPoint = () => {
     const w = window.innerWidth;
     if (w < 575) return "xs";

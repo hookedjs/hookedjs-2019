@@ -4,16 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 import * as qs from "query-string";
 import { EventStore } from "~/core/state/EventStore";
 
-import {Routes, ErrorComponent, LoadingComponent} from "~/var/config";
+import {ErrorComponent, LoadingComponent} from "~/var/config";
+import {Routes} from "~/var/routing";
 import { TimeNow } from "~/core/utils/TimeNow";
-import { SvgIconProps } from "@material-ui/core/SvgIcon";
 
 export interface RouteListItem {
   name: string;
   path: string;
   layout: React.ComponentClass;
   view: React.LazyExoticComponent<any>;
-  icon: React.ComponentType<SvgIconProps>;
+  icon: React.ComponentType<any>;
 }
 
 const RouteInnerWrapper = ({

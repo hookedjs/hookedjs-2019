@@ -11,7 +11,7 @@ import PermIdentity from "@material-ui/icons/PermIdentity";
 import GridContainer from "@bubbly/components/layouts/Grid/GridContainer";
 import GridItem from "@bubbly/components/layouts/Grid/GridItem";
 import Button from "@bubbly/components/modules/Buttons/Button";
-import CustomInput from "@bubbly/components/modules/CustomInput/CustomInput";
+import CustomInput from "@bubbly/components/modules/Input/Input";
 import Clearfix from "@bubbly/components/modules/Clearfix/Clearfix";
 import Card from "@bubbly/components/modules/Card/Card";
 import CardBody from "@bubbly/components/modules/Card/CardBody";

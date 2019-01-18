@@ -12,8 +12,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // core components
 import GridContainer from "@bubbly/components/layouts/Grid/GridContainer";
 import GridItem from "@bubbly/components/layouts/Grid/GridItem";
-import PictureUpload from "@bubbly/components/modules/CustomUpload/PictureUpload";
-import CustomInput from "@bubbly/components/modules/CustomInput/CustomInput";
+import PictureUpload from "@bubbly/components/modules/Upload/PictureUpload";
+import CustomInput from "@bubbly/components/modules/Input/Input";
 
 const style = {
   infoText: {

@@ -13,7 +13,7 @@ export const NotificationsStyle = theme => ({
     fontSize: "18px"
   },
   cardHeader: {
-    zIndex: "3"
+    zIndex: 3
   },
   cardSubtitle: {
     ...defaultFont,

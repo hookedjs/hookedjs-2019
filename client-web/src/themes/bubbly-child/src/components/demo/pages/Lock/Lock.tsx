@@ -6,7 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
 import Button from "@bubbly/components/modules/Buttons/Button";
-import CustomInput from "@bubbly/components/modules/CustomInput/CustomInput";
+import CustomInput from "@bubbly/components/modules/Input/Input";
 import Card from "@bubbly/components/modules/Card/Card";
 import CardBody from "@bubbly/components/modules/Card/CardBody";
 import CardAvatar from "@bubbly/components/modules/Card/CardAvatar";

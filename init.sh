@@ -13,8 +13,12 @@ if [ ! -x server-koa2/Config.ts ]; then
     cp server-koa2/Config.example.ts server-koa2/Config.ts
 fi
 
-if [ ! -d client-web/var ]; then
+if [ ! -d client-web/src/var ]; then
     cp -r client-web/src/core/var.example client-web/src/var
+fi
+
+if [ ! -d client-web/src/static ]; then
+    cp -r client-web/src/core/static.example client-web/src/static
 fi
 
 if [ -x .env ]; then

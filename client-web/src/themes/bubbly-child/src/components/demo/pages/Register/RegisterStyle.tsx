@@ -15,7 +15,7 @@ export const RegisterStyle = {
   container: {
     ...container,
     position: "relative",
-    zIndex: "3"
+    zIndex: 3
     // paddingTop: "23vh"
   },
   cardSignup: {

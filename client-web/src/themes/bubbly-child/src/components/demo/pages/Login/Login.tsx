@@ -14,7 +14,7 @@ import Email from "@material-ui/icons/Email";
 // core components
 import GridContainer from "@bubbly/components/layouts/Grid/GridContainer";
 import GridItem from "@bubbly/components/layouts/Grid/GridItem";
-import CustomInput from "@bubbly/components/modules/CustomInput/CustomInput";
+import CustomInput from "@bubbly/components/modules/Input/Input";
 import Button from "@bubbly/components/modules/Buttons/Button";
 import Card from "@bubbly/components/modules/Card/Card";
 import CardBody from "@bubbly/components/modules/Card/CardBody";

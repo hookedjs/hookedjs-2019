@@ -7,7 +7,7 @@ import { container, cardTitle } from "@bubbly/MainStyles";
 export const LoginStyle = theme => ({
   container: {
     ...container,
-    zIndex: "4",
+    zIndex: 4,
     [theme.breakpoints.down("sm")]: {
       paddingBottom: "100px"
     }
@@ -36,7 +36,7 @@ export const LoginStyle = theme => ({
     color: "#555"
   },
   cardHidden: {
-    opacity: "0",
+    opacity: 0,
     transform: "translate3d(0, -60px, 0)"
   },
   cardHeader: {

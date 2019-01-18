@@ -8,7 +8,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 
 // core components
-import CustomInput from "@bubbly/components/modules/CustomInput/CustomInput";
+import CustomInput from "@bubbly/components/modules/Input/Input";
 import GridContainer from "@bubbly/components/layouts/Grid/GridContainer";
 import GridItem from "@bubbly/components/layouts/Grid/GridItem";
 
