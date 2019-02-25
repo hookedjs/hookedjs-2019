@@ -4,6 +4,7 @@
  * with high level components I recommend you favor useCssBreakPoint most of the time
  */
 
+
 import * as React from "react";
 import { Debounce } from "~/core/utils/Debounce";
 
@@ -22,7 +23,7 @@ export function UseWindowSize() {
   };
   const handleResizeDebounced = Debounce(handleResize, 20, true);
 
-  React.useEffect(
+  React.useLayoutEffect(
     () => {
       window.addEventListener("resize", handleResizeDebounced);
       return () => {

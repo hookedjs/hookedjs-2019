@@ -5,6 +5,4 @@ import * as React from "react";
 import { render } from "react-dom";
 import { HotApp } from "./HotApp";
 
-console.log(`Build [AIV]{version}[/AIV]`);
-
 render(<HotApp />, document.getElementById("root"));

@@ -8,9 +8,7 @@
     "types:generate:watch": "rm src/@types/__generated__/*; apollo client:codegen --watch --localSchemaFile ../postgraphile/__generated__/schema.json --includes 'src/**' --target typescript --outputFlat src/@types/__generated__/",
     "types": "tsc --noEmit",
     "types:watch": "tsc --noEmit --watch",
-    "watch:bak": "npm-run-all --parallel types:watch webpack:watch",
-    "watch": "npm-run-all --parallel webpack:watch",
-    "webpack:watch": "yarn clean && webpack-dev-server --mode development --port 3001 --progress --inline --hot --colors",
+    "watch": "yarn clean && webpack-dev-server --mode development --port 3001 --progress --inline --hot --colors",
     "build": "yarn clean && webpack -p --progress --colors --display=minimal",
     "clean": "if [ -d ./build ]; then rm -rf build; fi; cp -rf src/static build",
     "clear-cache": "gulp clear-cache"
@@ -54,17 +52,16 @@
     "style-loader": "^0.21.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.17.0",
-    "webpack-auto-inject-version": "^1.1.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
-    "webpack-hot-middleware": "^2.24.2",
-    "webpack-version-file-plugin": "^0.3.3"
+    "webpack-hot-middleware": "^2.24.2"
   },
   "dependencies": {
     "apollo-boost": "^0.1.23",
     "classnames": "^2.2.6",
     "graphql": "^14.0.2",
     "gravatar": "^1.8.0",
+    "html-webpack-plugin": "^3.2.0",
     "localforage": "^1.7.3",
     "mobx": "^5.0.4",
     "mobx-react": "^5.4.3",

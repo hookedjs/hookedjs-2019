@@ -15,8 +15,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const VersionFile = require('webpack-version-file-plugin');
-const WebpackAutoInject = require('webpack-auto-inject-version');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 // variables
@@ -24,6 +23,18 @@ const sourcePath = path.join(__dirname, './src');
 const themesPath = path.join(__dirname, './src/themes');
 const themes = fs.readdirSync(themesPath);
 const outPath = path.join(__dirname, './build');
+
+function getDateString() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day =`${date.getDate()}`.padStart(2, '0');
+  const hour =`${date.getHours()}`.padStart(2, '0');
+  const minute = `${date.getMinutes()}`.padStart(2, '0');
+  return `${year}.${month}.${day}-${hour}.${minute}`;
+}
+const now = (new Date).getTime();
+const nowString = getDateString();
 
 // TODO: After removing bootstrap dependency, check if lodash is still being depended on :-(.
 
@@ -34,8 +45,8 @@ module.exports = {
   },
   output: {
     path: outPath,
-    filename: 'bundle.js',
-    chunkFilename: 'bundle-[chunkhash].js',
+    filename: `js-${nowString}/main.js`,
+    chunkFilename: `js-${nowString}/main.[id].js`,
     publicPath: '/',
   },
   target: 'web',
@@ -108,6 +119,7 @@ module.exports = {
   //   // runtimeChunk: true
   // },
   plugins: [
+    new HtmlWebpackPlugin({ template: path.resolve(sourcePath, 'static', 'index.html') }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
@@ -137,31 +149,6 @@ module.exports = {
     //   // paths: true,
     //   // placeholders: true,
     // }),
-    new VersionFile({
-      packageFile: path.join(__dirname, './package.json'),
-      // template: path.join(__dirname, 'version.ejs'),
-      templateString: `{
-        "version" : {
-          "name":      "<%= package.name %>",
-          "buildDate": "<%= currentTime %>",
-          "version":   "<%= package.version %>"
-        }
-      }`,
-      outputFile: path.join(outPath, 'version.json')
-    }),
-    new WebpackAutoInject({
-      PACKAGE_JSON_PATH: './package.json',
-      SILENT: true,
-      components: {
-        InjectAsComment: true
-      },
-      componentsOptions: {
-        InjectAsComment: {
-          tag: 'Build version: {version} - {date}', // default
-          dateFormat: 'dddd, mmmm dS, yyyy, h:MM:ss TT' // default
-        }
-      }
-    }),
   ],
   devServer: {
     contentBase: outPath,
