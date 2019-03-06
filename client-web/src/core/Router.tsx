@@ -6,7 +6,7 @@ import { EventStore } from "~/core/state/EventStore";
 
 import {ErrorComponent, LoadingComponent} from "~/var/config";
 import {Routes} from "~/var/routing";
-import { TimeNow } from "~/core/utils/TimeNow";
+import { TimeNow } from "~/core/polyfills/TimeNow";
 
 export interface RouteListItem {
   name: string;

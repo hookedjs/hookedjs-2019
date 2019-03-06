@@ -7,7 +7,7 @@
  */
 
 import * as React from "react";
-import { Debounce } from "~/core/utils/Debounce";
+import { Debounce } from "~/core/polyfills/Debounce";
 
 export const UseComponentSize = (ref: React.MutableRefObject<null>): {width: number, height: number} => {
   // @ts-ignore: ignore missing html prop

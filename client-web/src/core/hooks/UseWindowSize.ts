@@ -6,7 +6,7 @@
 
 
 import * as React from "react";
-import { Debounce } from "~/core/utils/Debounce";
+import { Debounce } from "~/core/polyfills/Debounce";
 
 export function UseWindowSize() {
   const getCurrentSize = () => {

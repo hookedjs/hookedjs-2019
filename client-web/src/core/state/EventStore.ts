@@ -3,8 +3,8 @@
  */
 
 import { observable } from "mobx";
-import { MobxPersist } from "../utils/MobxPersistance";
-import { TimeNow } from "../utils/TimeNow";
+import { MobxPersist } from "../polyfills/MobxPersistance";
+import { TimeNow } from "../polyfills/TimeNow";
 
 export interface Event {
   timestamp: number;

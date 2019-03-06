@@ -4,13 +4,13 @@
  * Designed to be compatible with both web and mobile.
  */
 import { observable, autorun, computed } from "mobx";
-import { Sleep } from "../utils/Sleep";
-import { StringContains } from "../utils/PrimitiveUtils";
+import { Sleep } from "../polyfills/Sleep";
+import { StringContains } from "../polyfills/PrimitiveUtils";
 import * as GoogleAnalytics from "react-ga";
 import { GoogleAnalyticsTags } from "~/var/config";
-import { MobxPersist } from "../utils/MobxPersistance";
+import { MobxPersist } from "../polyfills/MobxPersistance";
 import { EventStore } from "./EventStore";
-import { TimeNow } from "../utils/TimeNow";
+import { TimeNow } from "../polyfills/TimeNow";
 
 export interface Route {
   ts: number;
