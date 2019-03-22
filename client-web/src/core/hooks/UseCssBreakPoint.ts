@@ -4,8 +4,8 @@
  */
 
 import * as React from "react";
-import { Debounce } from "~/core/polyfills/Debounce";
-import { StringContains } from "~/core/polyfills/PrimitiveUtils";
+import {Debounce} from "~/core/polyfills/Debounce";
+import {StringContains} from "~/core/polyfills/PrimitiveUtils";
 
 export function UseCssBreakPoint() {
   const getCurrentBreakPoint = () => {
@@ -43,6 +43,6 @@ export function UseCssBreakPoint() {
 
   return {
     value: breakPoint,
-    search: (s: string[] | string): boolean => StringContains(breakPoint, s)
+    search: (s: string[] | string): boolean => StringContains(breakPoint, s),
   };
 }

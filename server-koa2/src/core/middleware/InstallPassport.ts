@@ -1,6 +1,6 @@
 const passport = require("koa-passport");
 const route = require("koa-route");
-const { Strategy: GitHubStrategy } = require("passport-github");
+const {Strategy: GitHubStrategy} = require("passport-github");
 
 /*
  * This file uses regular Passport.js authentication, both for
@@ -10,7 +10,7 @@ const { Strategy: GitHubStrategy } = require("passport-github");
  *   http://www.passportjs.org/
  */
 
-export const InstallPassport = (app, { rootPgPool }) => {
+export const InstallPassport = (app, {rootPgPool}) => {
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
@@ -21,10 +21,7 @@ export const InstallPassport = (app, { rootPgPool }) => {
     try {
       const {
         rows: [_user],
-      } = await rootPgPool.query(
-        `select users.* from app_public.users where users.id = $1`,
-        [id]
-      );
+      } = await rootPgPool.query(`select users.* from app_public.users where users.id = $1`, [id]);
       user = _user || false;
     } catch (e) {
       error = e;
@@ -48,23 +45,20 @@ export const InstallPassport = (app, { rootPgPool }) => {
           let error;
           let user;
           try {
-            const { rows } = await rootPgPool.query(
-              `select * from app_private.link_or_register_user($1, $2, $3, $4, $5) users where not (users is null);`,
-              [
-                (req.user && req.user.id) || null,
-                "github",
-                profile.id,
-                JSON.stringify({
-                  username: profile.username,
-                  avatar_url: profile._json.avatar_url,
-                  name: profile.displayName,
-                }),
-                JSON.stringify({
-                  accessToken,
-                  refreshToken,
-                }),
-              ]
-            );
+            const {rows} = await rootPgPool.query(`select * from app_private.link_or_register_user($1, $2, $3, $4, $5) users where not (users is null);`, [
+              (req.user && req.user.id) || null,
+              "github",
+              profile.id,
+              JSON.stringify({
+                username: profile.username,
+                avatar_url: profile._json.avatar_url,
+                name: profile.displayName,
+              }),
+              JSON.stringify({
+                accessToken,
+                refreshToken,
+              }),
+            ]);
             user = rows[0] || false;
           } catch (e) {
             error = e;
@@ -87,14 +81,12 @@ export const InstallPassport = (app, { rootPgPool }) => {
       )
     );
   } else {
-    console.error(
-      "WARNING: you've not set up the GitHub application for login; see `.env` for details"
-    );
+    console.error("WARNING: you've not set up the GitHub application for login; see `.env` for details");
   }
   app.use(
-    route.get("/logout", async ctx => {
+    route.get("/auth/logout", async (ctx) => {
       ctx.logout();
-      ctx.redirect("/");
+      // ctx.redirect("/");
     })
   );
 };

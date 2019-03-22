@@ -2,12 +2,7 @@
  * Borrowed from just-debounce
  **/
 
-export function Debounce(
-  fn: () => void,
-  delay: number,
-  at_start?: boolean,
-  guarantee?: boolean
-) {
+export function Debounce(fn: () => void, delay: number, at_start?: boolean, guarantee?: boolean) {
   var timeout: any;
   var args: any;
   var self: any;

@@ -3,14 +3,14 @@
  *
  * Designed to be compatible with both web and mobile.
  */
-import { observable, autorun, computed } from "mobx";
-import { Sleep } from "../polyfills/Sleep";
-import { StringContains } from "../polyfills/PrimitiveUtils";
+import {observable, autorun, computed} from "mobx";
+import {Sleep} from "../polyfills/Sleep";
+import {StringContains} from "../polyfills/PrimitiveUtils";
 import * as GoogleAnalytics from "react-ga";
-import { GoogleAnalyticsTags } from "~/var/config";
-import { MobxPersist } from "../polyfills/MobxPersistance";
-import { EventStore } from "./EventStore";
-import { TimeNow } from "../polyfills/TimeNow";
+import {GoogleAnalyticsTags} from "~/var/config";
+import {MobxPersist} from "../polyfills/MobxPersistance";
+import {EventStore} from "./EventStore";
+import {TimeNow} from "../polyfills/TimeNow";
 
 export interface Route {
   ts: number;
@@ -43,8 +43,7 @@ export class RoutingStoreClass {
   routeHistory: Route[] = [];
   @computed
   get route() {
-    if (this.routeHistory.length)
-      return this.routeHistory[this.routeHistory.length - 1];
+    if (this.routeHistory.length) return this.routeHistory[this.routeHistory.length - 1];
     else
       return {
         ts: 0,
@@ -52,17 +51,14 @@ export class RoutingStoreClass {
         url: "",
         path: "",
         params: {},
-        isExact: false
+        isExact: false,
       };
   }
 
   pushRoute = async (routeNext: Route) => {
     console.log(`routing.pushRoute: pushing ${JSON.stringify(routeNext)}`);
 
-    if (
-      routeNext.href === this.route.href &&
-      TimeNow() - this.route.ts < 1000
-    ) {
+    if (routeNext.href === this.route.href && TimeNow() - this.route.ts < 1000) {
       console.log(`routing.sessionPushRouteToJourney: same href, no-op`);
       return;
     }
@@ -76,30 +72,16 @@ export class RoutingStoreClass {
     this.routeHistory.push(routeNext);
 
     if (!StringContains(routeNext.href, ["localhost", "127.0.0.1"])) {
-      if (this.googleAnalyticsId)
-        await this.googleAnalyticsTrackPageView(routeNext.href);
-      else
-        console.log(
-          `mobx.routing.onrouteChange: Skipping GATrackPageView bc ${
-            routeNext.href
-          } is blacklisted from tracking`
-        );
+      if (this.googleAnalyticsId) await this.googleAnalyticsTrackPageView(routeNext.href);
+      else console.log(`mobx.routing.onrouteChange: Skipping GATrackPageView bc ${routeNext.href} is blacklisted from tracking`);
     }
 
-    EventStore.dispatch("routing.change", { route: routeNext });
+    EventStore.dispatch("routing.change", {route: routeNext});
 
-    console.log(
-      `routing.pushRoute: Done pushing ${JSON.stringify(routeNext)} `
-    );
+    console.log(`routing.pushRoute: Done pushing ${JSON.stringify(routeNext)} `);
   };
 
-  getBackRouteWithFilters = ({
-    excludes = [],
-    search
-  }: {
-    excludes?: string[];
-    search?: string;
-  }): string => {
+  getBackRouteWithFilters = ({excludes = [], search}: {excludes?: string[]; search?: string}): string => {
     const history = this.routeHistory;
 
     for (let route of history.slice().reverse()) {
@@ -120,11 +102,8 @@ export class RoutingStoreClass {
   googleAnalyticsId: string | undefined;
   googleAnalyticsTrackPageView = async (uri: string) => {
     console.log(`GATracking uri = ${uri}`);
-    if (!this.googleAnalyticsId)
-      throw Error(
-        `mobx.routing.googleAnalyticsTrackPageView: Error - google analytics id is missing in config.`
-      );
-    GoogleAnalytics.set({ uri });
+    if (!this.googleAnalyticsId) throw Error(`mobx.routing.googleAnalyticsTrackPageView: Error - google analytics id is missing in config.`);
+    GoogleAnalytics.set({uri});
     await GoogleAnalytics.pageview(uri);
   };
 

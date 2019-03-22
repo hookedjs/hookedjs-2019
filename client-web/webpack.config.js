@@ -4,7 +4,8 @@
  * Refs:
  * https://github.com/rokoroku/react-mobx-typescript-boilerplate
  * https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark
- * 
+ * https://stackoverflow.com/questions/49912084/webpack-run-both-less-and-scss-compilation-extract-text-plugin-not-working-on
+ *
  * For native, check out
  * - https://github.com/timarney/react-app-rewired
  * - https://github.com/cdharris/react-app-rewire-hot-loader
@@ -12,11 +13,15 @@
  * Need to decide if we should use react-app-rewired or maybe just use webpack environment features
  */
 
+const devMode = process.env.NODE_ENV !== 'production';
+
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // variables
 const sourcePath = path.join(__dirname, './src');
@@ -35,6 +40,16 @@ function getDateString() {
 }
 const now = (new Date).getTime();
 const nowString = getDateString();
+
+const cssLoaders = [
+  devMode ? {loader: 'style-loader', options: {sourceMap: true}} : MiniCssExtractPlugin.loader,
+  {loader: 'css-loader', options: {sourceMap: devMode}},
+  {loader: 'postcss-loader', options: {
+    ident: 'postcss', sourceMap: devMode,
+      plugins: () => [require('postcss-preset-env')({stage: 0, browsers: 'last 1 Chrome version'})] }
+  },
+];
+
 
 // TODO: After removing bootstrap dependency, check if lodash is still being depended on :-(.
 
@@ -64,60 +79,36 @@ module.exports = {
   },
   module: {
     rules: [
-      // Take all sass files, compile them, and bundle them in with our js bundle
+
+      // Styles
       {
-        test: /\.(scss|css|sass)$/,
-        use: [
-          {loader: 'style-loader', options: {sourceMap: true}},
-          // MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader', options: {
-              importLoaders: 1,
-              sourceMap: true,
-            }
-          },
-          {
-            loader: 'postcss-loader', options: {
-              ident: 'postcss',
-              sourceMap: true,
-              plugins: () => [
-                require('postcss-preset-env')({stage: 0, browsers: 'last 1 Chrome version'}),
-                // require('postcss-svgo')(),
-                // require('cssnano')(),
-              ]
-            }
-          },
-          {loader: 'sass-loader', options: {sourceMap: true,}},
-        ]
+        test: /\.(sass|scss)$/,
+        use: cssLoaders.concat([
+          {loader: 'sass-loader', options: {sourceMap: devMode}}
+        ]),
       },
       {
-        test: /\.(mjs|js|tsx|ts)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
+        test: /\.less$/,
+        use: cssLoaders.concat([
+          {loader: 'less-loader', options: {sourceMap: devMode}},
+        ]),
       },
+      { test: /\.css$/, use: cssLoaders },
+
+
+      { test: /\.(mjs|js|tsx|ts)$/, exclude: /node_modules/, loader: 'babel-loader' },
       { test: /\.(graphql|gql)$/, exclude: /node_modules/, use: 'graphql-tag/loader' },
-      { test: /\.(png|jpg|jpeg|gif|svg)$/, exclude: /node_modules/, use: 'url-loader?limit=5000' },
-      { test: /\.(woff|woff2|eot|ttf|otf)/, use: 'file-loader' }, // fonts
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        exclude: /node_modules/,
+        use: { loader: 'url-loader', options: { limit: 5000, name: devMode ? '[path][name].[ext]' : '[path][name][hash].[ext]' } },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)/,
+        use: {loader: 'file-loader', options: { name: devMode ? '[path][name].[ext]' : '[path][name][hash].[ext]' }},
+      }, // fonts
     ],
   },
-  // Example of configuring code splitting. I recommend just leaving defaults.
-  // optimization: {
-  //   splitChunks: {
-  //     name: true,
-  //     cacheGroups: {
-  //       commons: {
-  //         chunks: 'initial',
-  //         minChunks: 2
-  //       },
-  //       vendors: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         chunks: 'all',
-  //         priority: -10
-  //       }
-  //     }
-  //   },
-  //   // runtimeChunk: true
-  // },
   plugins: [
     new HtmlWebpackPlugin({ template: path.resolve(sourcePath, 'static', 'index.html') }),
     new webpack.DefinePlugin({
@@ -125,6 +116,14 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
         PLATFORM_ENV: JSON.stringify('web'),
       },
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: devMode ? '[name].css' : '[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      // filename: devMode ? '[name].css' : `css-${nowString}/[name].css`,
+      // chunkFilename: devMode ? '[id].css' : `css-${nowString}/[name].[id].css`,
     }),
     // new webpack.optimize.OccurrenceOrderPlugin(),
     // new webpack.NoEmitOnErrorsPlugin(),

@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Helmet } from "react-helmet";
-import { AppName } from "~/var/config";
+import {Helmet} from "react-helmet";
+import {AppName} from "~/var/config";
 
-export class HelmetDefault extends React.PureComponent<{ title?: string }> {
+export class HelmetDefault extends React.PureComponent<{title?: string}> {
   render() {
     // const url = `${config.baseUrl}${location.pathname}${location.search}${location.hash}`;
-    const { title } = this.props;
+    const {title} = this.props;
     return (
       <Helmet>
         <title>

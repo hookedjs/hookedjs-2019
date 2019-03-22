@@ -4,29 +4,29 @@
   "version": "0.0.1",
   "scripts": {
     "lerna:bootstrap": "lerna bootstrap",
-    "db:clear": "./postgraphile/utils/clear.sh",
-    "db:reset": "./postgraphile/utils/reset.sh",
-    "prettier": "prettier --loglevel warn --write \"{firebase/functions/src,react-web/src,react-native/src}/**/*.{ts,tsx,css,json,md,js}\"",
+    "prettier": "prettier --loglevel warn --write \"{client-web/src,server-koa2/src}/**/*.{ts,tsx,css,json,md,js}\"",
     "types": "tsc --noEmit",
     "types:watch": "tsc --noEmit --watch",
     "server:koa2": "cd server-koa2; yarn start",
-    "server:postgraphile": ". ./.env && postgraphile",
-    "dev": ". ./.env && lerna run --parallel watch",
-    "serve0": "concurrently --kill-others npm:server:koa2 npm:client:web npm:playground"
+    "server:hasura": "cd server-hasura && yarn dev",
+    "build": ". ./.env && lerna run --parallel lerna:build",
+    "start": "yarn build && yarn server:koa2",
+    "dev": ". ./.env && lerna run --parallel lerna:dev",
+    "test": ". ./.env && lerna run --parallel lerna:test",
+    "clean": ". ./.env && lerna run --parallel lerna:clean",
+    "serve-abandoned": "concurrently --kill-others npm:server:koa2 npm:client:web npm:playground"
   },
   "private": false,
   "husky": {
     "hooks": {
-      "pre-commit": "yarn types && yarn prettier && git add -u"
+      "pre-commit": "yarn prettier && git add -u"
     }
   },
   "dependencies": {
-    "@graphile-contrib/pg-simplify-inflector": "^4.0.0-alpha.0",
     "concurrently": "3.6.0",
     "husky": "^1.1.1",
     "lerna": "^3.10.5",
     "npm-run-all": "^4.1.3",
-    "postgraphile": "^4.2.0",
     "prettier": "^1.14.3"
   },
   "engines": {

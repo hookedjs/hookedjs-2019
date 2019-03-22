@@ -2,9 +2,9 @@
  * Centralized Event Pub/Subscribe in the App
  */
 
-import { observable } from "mobx";
-import { MobxPersist } from "../polyfills/MobxPersistance";
-import { TimeNow } from "../polyfills/TimeNow";
+import {observable} from "mobx";
+import {MobxPersist} from "../polyfills/MobxPersistance";
+import {TimeNow} from "../polyfills/TimeNow";
 
 export interface Event {
   timestamp: number;
@@ -20,11 +20,11 @@ export class EventStoreClass {
   eventHistory: Event[] = [];
 
   @observable
-  eventLast: Event = { timestamp: TimeNow(), code: "init", meta: null };
+  eventLast: Event = {timestamp: TimeNow(), code: "init", meta: null};
 
   dispatch = async (eventCode: string, meta?: any) => {
     console.log(`EventStore.dispatch: Received ${eventCode}`);
-    const event = { timestamp: TimeNow(), code: eventCode, meta: meta };
+    const event = {timestamp: TimeNow(), code: eventCode, meta: meta};
     // TODO: Memory Leak: Reduce event history size when size > 500 && size % 100
     this.eventHistory.push(event);
     this.eventLast = event;

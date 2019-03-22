@@ -4,15 +4,14 @@
  * with high level components I recommend you favor useCssBreakPoint most of the time
  */
 
-
 import * as React from "react";
-import { Debounce } from "~/core/polyfills/Debounce";
+import {Debounce} from "~/core/polyfills/Debounce";
 
 export function UseWindowSize() {
   const getCurrentSize = () => {
     return {
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
     };
   };
 

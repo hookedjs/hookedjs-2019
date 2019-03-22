@@ -1,0 +1,52 @@
+version: '3.6'
+services:
+  graphql-engine:
+    image: hasura/graphql-engine:v1.0.0-alpha39.cli-migrations
+#    network_mode: "host"
+    ports:
+    - 8080:8080
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: "${HASURA_DATABASE_URL}"
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_ADMIN_SECRET: "${SUPERUSER_PASSWORD}"
+    volumes:
+      - ./migrations:/hasura-migrations
+volumes:
+  migrations:
+
+# The following is a docker config if you ran postgres and graphql-engine together in one compose
+#
+#version: '3.6'
+#services:
+#    postgres:
+#      image: postgres
+#      restart: always
+#      volumes:
+#      - db_data:/var/lib/postgresql/data
+#  #  pgadmin:
+#  #    image: dpage/pgadmin4
+#  #    restart: always
+#  #    depends_on:
+#  #    - postgres
+#  #    ports:
+#  #    - 5050:80
+#  #    ## you can change pgAdmin default username/password with below environment variables
+#  #    environment:
+#  #      PGADMIN_DEFAULT_EMAIL: "${SUPERUSER_EMAIL}"
+#  #      PGADMIN_DEFAULT_PASSWORD: "${SUPERUSER_PASSWORD}"
+#  graphql-engine:
+#    image: hasura/graphql-engine:v1.0.0-alpha39.cli-migrations
+#    ports:
+#    - 8080:8080
+#    restart: always
+#    environment:
+#      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
+#      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+#      ## uncomment next line to set an admin secret
+#      HASURA_GRAPHQL_ADMIN_SECRET: "${SUPERUSER_PASSWORD}"
+#    volumes:
+#    - ./migrations:/hasura-migrations
+#volumes:
+#  migrations:
+#  db_data:

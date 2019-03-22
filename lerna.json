@@ -3,7 +3,9 @@
     ".",
     "client-web",
     "client-web/src/themes/*",
-    "server-koa2"
+    "server-hasura",
+    "server-koa2",
+    "server-postgres"
   ],
   "version": "0.0.1",
   "npmClient": "yarn",

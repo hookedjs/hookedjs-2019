@@ -1,4 +1,4 @@
-import { action, autorun } from "mobx";
+import {action, autorun} from "mobx";
 import * as localforage from "localforage";
 
 export const MobxPersist = action(async (store: any) => {
@@ -6,9 +6,7 @@ export const MobxPersist = action(async (store: any) => {
     const storageKey = `${store.constructor.name}.${fieldName}`;
     // console.log(`mobx.StoreWrapper.hydrate: Hydrating ${storageKey}`);
     // @ts-ignore: Hydrate no index signature
-    const storedValue = JSON.parse((await localforage.getItem(
-      storageKey
-    )) as any);
+    const storedValue = JSON.parse((await localforage.getItem(storageKey)) as any);
     if (storedValue) store[fieldName] = storedValue;
     autorun(() => {
       // console.log(`mobx.StoreWrapper.hydrate: Setting ${storageKey} to ${store[fieldName]}`);

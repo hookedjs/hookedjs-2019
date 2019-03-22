@@ -1,13 +1,12 @@
 import * as http from "http";
 import * as Koa from "koa";
 import * as pg from "pg";
-import { InstallWatchFixtures, SanitiseEnv } from "~/core/Utils";
+import {InstallWatchFixtures, SanitiseEnv} from "~/core/Utils";
 import {InstallStandardKoaMiddlewares} from "~/core/middleware/InstallStandardKoaMiddlewares";
 import {InstallSession} from "~/core/middleware/InstallSession";
 import {InstallPassport} from "~/core/middleware/InstallPassport";
-import {InstallPostGraphile} from "~/core/middleware/InstallPostGraphile";
-import {InstallSharedStatic} from "~/core/middleware/InstallSharedStatic";
-import {InstallFrontendServer} from "~/core/middleware/InstallFrontendServer";
+import {InstallHasura} from "~/core/middleware/InstallHasura";
+import {InstallWebApp} from "~/core/middleware/InstallWebApp";
 
 export const Server = () => {
   SanitiseEnv();
@@ -18,8 +17,8 @@ export const Server = () => {
 
   const isDev = process.env.NODE_ENV === "development";
 
-// We're using a non-super-user connection string, so we need to install the
-// watch fixtures ourself.
+  // We're using a non-super-user connection string, so we need to install the
+  // watch fixtures ourself.
   if (isDev) {
     InstallWatchFixtures(rootPgPool);
   }
@@ -29,13 +28,11 @@ export const Server = () => {
 
   InstallStandardKoaMiddlewares(app);
   InstallSession(app);
-  InstallPassport(app, { rootPgPool });
-  InstallPostGraphile(app, { rootPgPool });
-  InstallSharedStatic(app);
-  InstallFrontendServer(app, server);
+  InstallPassport(app, {rootPgPool});
+  InstallHasura(app);
+  InstallWebApp(app);
 
-  const PORT = parseInt(process.env.PORT, 10) || 3000;
+  const PORT = process.env.PORT;
   server.listen(PORT);
   console.log(`Listening on port ${PORT}`);
-
 };

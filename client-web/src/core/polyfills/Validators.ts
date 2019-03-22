@@ -4,7 +4,9 @@ export const AlphabeticRe = new RegExp(`^[a-zA-Z]+$`);
 
 export const AlphaNumericRe = new RegExp(`^[a-zA-Z0-9]+$`);
 
-export const EmailAddressRe = new RegExp(`^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$`);
+export const EmailAddressRe = new RegExp(
+  `^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$`
+);
 
 export const USPhoneNumbersRe = new RegExp(`^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$`);
 

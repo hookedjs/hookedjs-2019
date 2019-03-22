@@ -1,37 +1,31 @@
 /**
  * Exports an initialized Mobx store
  */
-import { action, observable, computed, autorun } from "mobx";
+import {action, observable, computed, autorun} from "mobx";
 // import {User, UserUpdate} from "~/core/schema/User";
-import { User } from "~/core/schema/User";
+import {User} from "~/core/schema/User";
 // import {UserGetDeviceInfo} from "../utils/UserGetDeviceInfo";
-import { Sleep } from "../polyfills/Sleep";
+import {Sleep} from "../polyfills/Sleep";
 // import {UserSession, UserSessionJourneyItem, UserSessionUpdate} from "~/core/schema/UserSession";
-import { UserSessionJourneyItem } from "~/core/schema/UserSession";
-import { MobxPersist } from "../polyfills/MobxPersistance";
-import { EventStore } from "./EventStore";
+import {UserSessionJourneyItem} from "~/core/schema/UserSession";
+import {MobxPersist} from "../polyfills/MobxPersistance";
+import {EventStore} from "./EventStore";
 // import {TimeNow} from "../utils/TimeNow";
-import { Route } from "./RoutingStore";
+import {Route} from "./RoutingStore";
 
 // Global race-prevention vars
 // @ts-ignore: Accessing window custom variable
 window.authIsLoading = false;
 
 export class AuthStoreClass {
-  persistedFields = [
-    "lastLoadedUserIdAndEmail",
-    "sessionId",
-    "registrationReferrer",
-    "registrationPromoCode",
-    "lastKnownUserEmail"
-  ];
+  persistedFields = ["lastLoadedUserIdAndEmail", "sessionId", "registrationReferrer", "registrationPromoCode", "lastKnownUserEmail"];
   isHydrated = false;
 
   @observable
   state: "busy" | "anonymous" | "identified" = "busy";
 
   @observable
-  lastLoadedUserIdAndEmail = { id: "", email: "" };
+  lastLoadedUserIdAndEmail = {id: "", email: ""};
   @observable
   lastKnownUserEmail: string = ""; // for recalling last-login if logged out
 
@@ -78,22 +72,13 @@ export class AuthStoreClass {
     }
 
     if (this.doc && this.doc.id === userId) {
-      console.log(
-        `Auth.handleAuthChange: User ${userId} already loaded -- no-op.`
-      );
+      console.log(`Auth.handleAuthChange: User ${userId} already loaded -- no-op.`);
       return;
     }
 
     // Start new Session if no session avail, or if session belongs to another identified user
-    if (
-      !this.sessionId ||
-      (this.lastLoadedUserIdAndEmail.id &&
-        userId !== this.lastLoadedUserIdAndEmail.id &&
-        this.lastLoadedUserIdAndEmail.email)
-    ) {
-      console.log(
-        `Auth.handleAuthChange: Session is null or stale. Starting new session.`
-      );
+    if (!this.sessionId || (this.lastLoadedUserIdAndEmail.id && userId !== this.lastLoadedUserIdAndEmail.id && this.lastLoadedUserIdAndEmail.email)) {
+      console.log(`Auth.handleAuthChange: Session is null or stale. Starting new session.`);
       // const now = TimeNow();
       // const userSessionData: UserSession = {
       //   createdAt: now,
@@ -110,14 +95,8 @@ export class AuthStoreClass {
     } else console.log(`Auth.handleAuthChange: Re-Using Session.`);
 
     // Merge prior user if was anonymous and uid changed
-    if (
-      this.lastLoadedUserIdAndEmail.id &&
-      userId !== this.lastLoadedUserIdAndEmail.id &&
-      !this.lastLoadedUserIdAndEmail.email
-    ) {
-      console.log(
-        `Auth.handleAuthChange: Inform backend to merge last loaded user into new.`
-      );
+    if (this.lastLoadedUserIdAndEmail.id && userId !== this.lastLoadedUserIdAndEmail.id && !this.lastLoadedUserIdAndEmail.email) {
+      console.log(`Auth.handleAuthChange: Inform backend to merge last loaded user into new.`);
       // RestFunctionPost("UserMerge", {userFromId: this.lastLoadedUserIdAndEmail.id, userToId: userId});
     }
 
@@ -175,10 +154,7 @@ export class AuthStoreClass {
         console.log(`Auth.load: Attributing referrer`);
         // RestFunctionPost("UserReferralAttribute", {userId: this.loadedUser.uid, referrerId: this.registrationReferrer});
       }
-      if (
-        this.registrationPromoCode &&
-        !this.docData.regPromoBalanceTransaction
-      ) {
+      if (this.registrationPromoCode && !this.docData.regPromoBalanceTransaction) {
         console.log(`Auth.load: Attributing referrer`);
         // RestFunctionPost("UserPromoApply", {userId: this.loadedUser.uid, promoCode: this.registrationPromoCode});
       }
@@ -186,7 +162,7 @@ export class AuthStoreClass {
 
     this.lastLoadedUserIdAndEmail = {
       id: userId,
-      email: this.docData.email || ""
+      email: this.docData.email || "",
     };
     // @ts-ignore: Accessing window custom variable
     window.authIsLoading = false;
@@ -247,9 +223,7 @@ export class AuthStoreClass {
   sessionJourney: UserSessionJourneyItem[] = [];
   sessionPushRouteToJourney = async (href: string) => {
     while (!this.sessionRef) {
-      console.log(
-        `auth.sessionPushRouteToJourney: Waiting for session to ready`
-      );
+      console.log(`auth.sessionPushRouteToJourney: Waiting for session to ready`);
       await Sleep(400);
     }
     // const now = TimeNow();
@@ -293,13 +267,9 @@ export class AuthStoreClass {
    */
   @action
   loginWithEmailAndPassword = async (email: string, password: string) => {
-    console.log(
-      `Auth.loginWithEmailAndPassword: starting with ${email} and *******`
-    );
+    console.log(`Auth.loginWithEmailAndPassword: starting with ${email} and *******`);
     if (this.docData.email) {
-      console.log(
-        `Auth.loginWithEmailAndPassword: Current user is not anonymous. Logging out.`
-      );
+      console.log(`Auth.loginWithEmailAndPassword: Current user is not anonymous. Logging out.`);
       await this.logout();
     }
     this.unsubscribe();
@@ -329,13 +299,9 @@ export class AuthStoreClass {
    */
   @action
   regWithEmailAndPassword = async (email: string, password: string) => {
-    console.log(
-      `Auth.regWithEmailAndPassword: starting with ${email} and *******`
-    );
+    console.log(`Auth.regWithEmailAndPassword: starting with ${email} and *******`);
     if (this.docData.email) {
-      console.log(
-        `Auth.regWithEmailAndPassword: Current user is not anonymous. Logging out.`
-      );
+      console.log(`Auth.regWithEmailAndPassword: Current user is not anonymous. Logging out.`);
       await this.logout();
     }
     this.unsubscribe();
@@ -366,9 +332,7 @@ export class AuthStoreClass {
   loginSSORedirect = async (providerString: string) => {
     console.log(`Auth.loginSSORedirect: Starting`);
     if (this.docData.email) {
-      console.log(
-        `Auth.loginSSORedirect: Current user is not anonymous. Logging out.`
-      );
+      console.log(`Auth.loginSSORedirect: Current user is not anonymous. Logging out.`);
       await this.logout();
     }
     this.unsubscribe();
@@ -388,9 +352,7 @@ export class AuthStoreClass {
    * @param providerString
    */
   @action
-  loginSSOPopup = async (
-    providerString: string
-  ): Promise<{ user: any; isNew: boolean; error: string }> => {
+  loginSSOPopup = async (providerString: string): Promise<{user: any; isNew: boolean; error: string}> => {
     console.log(`Auth.loginSSO: Starting`);
     if (this.docData.email) {
       console.log(`Auth.loginSSO: Current user is not anonymous. Logging out.`);
@@ -406,14 +368,14 @@ export class AuthStoreClass {
         await Sleep(200);
       }
       // return {user: authResponse.user!, isNew: authResponse.additionalUserInfo!.isNewUser, error: ""};
-      return { user: {}, isNew: true, error: "" };
+      return {user: {}, isNew: true, error: ""};
     } catch (e) {
       console.log(`Auth.loginSSO: Unsuccessful`);
       // await this.subscribe(Firebase.auth().currentUser!.uid);
       this.state = this.docData.email ? "identified" : "anonymous";
       console.dir(e);
       // return {user: Firebase.auth().currentUser, isNew: false, error: e};
-      return { user: {}, isNew: true, error: "" };
+      return {user: {}, isNew: true, error: ""};
     }
   };
 
@@ -438,19 +400,11 @@ export class AuthStoreClass {
       this.sessionPushRouteToJourney(route.href);
 
       if (route.params.ref) {
-        console.log(
-          `auth.handleRouteChangeEvent: ReferrerId (${
-            route.params.ref
-          }) detected in route`
-        );
+        console.log(`auth.handleRouteChangeEvent: ReferrerId (${route.params.ref}) detected in route`);
         this.registrationReferrer = route.params.ref;
       }
       if (route.params.promo) {
-        console.log(
-          `auth.handleRouteChangeEvent: PromoCode (${
-            route.params.promo
-          }) detected in route`
-        );
+        console.log(`auth.handleRouteChangeEvent: PromoCode (${route.params.promo}) detected in route`);
         this.registrationPromoCode = route.params.promo;
       }
     }

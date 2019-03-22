@@ -1,5 +1,5 @@
-import { Device } from "~/core/schema/Device";
-import { IpgeolocationioKey } from "~/var/config";
+import {Device} from "~/core/schema/Device";
+import {IpgeolocationioKey} from "~/var/config";
 
 export interface GeoIntel {
   ip: "71.179.91.210";
@@ -40,11 +40,8 @@ export interface GeoIntel {
 
 export const UserGetDeviceInfo = (): Promise<Device> => {
   if (!IpgeolocationioKey) throw new Error("UserGetDeviceInfo: Cannot call without Config.IpgeolocationioKey");
-  return fetch(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=${IpgeolocationioKey}`,
-    { method: "get" }
-  )
-    .then(async response => {
+  return fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${IpgeolocationioKey}`, {method: "get"})
+    .then(async (response) => {
       if (response.status !== 200) throw new Error("Response not 200.");
       const geoIntel: GeoIntel = await response.json();
       return {
@@ -62,7 +59,7 @@ export const UserGetDeviceInfo = (): Promise<Device> => {
         currency: geoIntel.currency.code,
         tz: geoIntel.time_zone.name,
         tz_offset: geoIntel.time_zone.offset,
-        uagent: navigator.userAgent
+        uagent: navigator.userAgent,
       };
     })
     .catch(function(err) {

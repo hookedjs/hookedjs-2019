@@ -1,0 +1,14 @@
+{
+  "name": "hooked-server-postgres",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "docker-compose up --build",
+    "dev": "docker-compose up --build",
+    "lerna:dev": "yarn dev",
+    "clean": "docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker volume prune -f",
+    "lerna:clean": "yarn clean",
+    "test": "yarn dev",
+    "lerna:test": "yarn test"
+  }
+}

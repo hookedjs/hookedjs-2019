@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json.schemastore.org/solidaritySchema",
+  "requirements": {
+    "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^1.9.4" }],
+    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=10" }],
+    "Typescript": [{ "rule": "cli", "binary": "tsc", "semver": ">=3.0.3" }],
+    "TSLint": [{ "rule": "cli", "binary": "tslint", "semver": ">=5.11.0" }],
+    "React Native": [{"rule": "cli","binary": "react-native","semver": ">=2.0.1"}],
+    "Xcode": [
+      {
+        "rule": "cli",
+        "binary": "xcodebuild",
+        "version": "-version",
+        "semver": ">=9.2.0",
+        "platform": "darwin"
+      }
+    ]
+  }
+}

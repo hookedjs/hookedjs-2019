@@ -16,8 +16,8 @@ export function TimeGetFromNowLong(timeInMillis: number) {
       M: "a month",
       MM: "%d months",
       y: "a year",
-      yy: "%d years"
-    }
+      yy: "%d years",
+    },
   });
   return moment(timeInMillis).fromNow();
 }
@@ -38,8 +38,8 @@ export function TimeGetFromNowShort(timeInMillis: number) {
       M: "a month",
       MM: "%dM",
       y: "a year",
-      yy: "%dY"
-    }
+      yy: "%dY",
+    },
   });
   return moment(timeInMillis).fromNow(true);
 }
