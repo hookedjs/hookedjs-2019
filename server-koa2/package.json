@@ -14,10 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@graphile-contrib/pg-simplify-inflector": "^4.0.0-alpha.0",
     "@koa/cors": "2.2.1",
-    "graphile-build-pg": "^4.2.0",
-    "graphile-utils": "4.0.0-rc.3",
     "koa": "2.5.1",
     "koa-bodyparser": "4.2.1",
     "koa-bunyan-logger": "2.1.0",
@@ -32,14 +29,11 @@
     "koa-static": "^5.0.0",
     "passport-github": "1.1.0",
     "pg": "7.4.3",
-    "postgraphile": "4.2.0",
-    "postgraphile-plugin-connection-filter": "^1.0.0-beta.25",
-    "ts-node": "^7.0.1",
+    "ts-node": "^7.0.1"
+  },
+  "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.32",
     "tsconfig-paths": "^3.7.0",
     "typescript": "^3.2.2"
-  },
-  "devDependencies": {
-    "nodemon": "1.17.5"
   }
 }

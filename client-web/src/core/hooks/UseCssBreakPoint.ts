@@ -31,15 +31,12 @@ export function UseCssBreakPoint() {
   };
   const handleResizeDebounced = Debounce(handleResize, 20, true);
 
-  React.useEffect(
-    () => {
-      window.addEventListener("resize", handleResizeDebounced);
-      return () => {
-        window.removeEventListener("resize", handleResizeDebounced);
-      };
-    },
-    [false]
-  ); // watching false means this only fires on mount/dismount
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResizeDebounced);
+    return () => {
+      window.removeEventListener("resize", handleResizeDebounced);
+    };
+  }, [false]); // watching false means this only fires on mount/dismount
 
   return {
     value: breakPoint,

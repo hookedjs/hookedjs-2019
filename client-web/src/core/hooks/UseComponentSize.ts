@@ -20,16 +20,13 @@ export const UseComponentSize = (ref: React.MutableRefObject<null>): {width: num
   };
   const handleResizeDebounced = Debounce(handleResize, 20, true);
 
-  React.useLayoutEffect(
-    () => {
-      handleResize();
-      window.addEventListener("resize", handleResize);
-      return () => {
-        window.removeEventListener("resize", handleResizeDebounced);
-      };
-    },
-    [ref.current]
-  ); // watching false means this only fires on mount/dismount
+  React.useLayoutEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResizeDebounced);
+    };
+  }, [ref.current]); // watching false means this only fires on mount/dismount
 
   return size;
 };

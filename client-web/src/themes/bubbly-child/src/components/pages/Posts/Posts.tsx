@@ -9,40 +9,37 @@ import GridItem from "@bubbly/components/layouts/Grid/GridItem";
 
 export const Posts = () => {
   const [postDocs, setPostDocs] = React.useState<(RoutePosts_Query_forums_nodes | null)[]>([]);
-  React.useEffect(
-    () => {
-      setPostDocs([]);
-      // const postsSubscription = Firebase.firestore()
-      //   .collection("posts")
-      //   .where("isPublic", "==", true)
-      //   .orderBy("publishedAt", "desc")
-      //   .limit(16)
-      //   .onSnapshot((snap) => {
-      //     setPostDocs(snap.docs);
-      //   });
+  React.useEffect(() => {
+    setPostDocs([]);
+    // const postsSubscription = Firebase.firestore()
+    //   .collection("posts")
+    //   .where("isPublic", "==", true)
+    //   .orderBy("publishedAt", "desc")
+    //   .limit(16)
+    //   .onSnapshot((snap) => {
+    //     setPostDocs(snap.docs);
+    //   });
 
-      Apollo.query({
-        query: gql`
-          query RoutePosts_Query {
-            forums {
-              nodes {
-                id
-                slug
-              }
+    Apollo.query({
+      query: gql`
+        query RoutePosts_Query {
+          forums {
+            nodes {
+              id
+              slug
             }
           }
-        `,
-      }).then((result) => {
-        const data = result.data as RoutePosts_Query;
-        setPostDocs(data.forums ? data.forums.nodes : []);
-      });
+        }
+      `,
+    }).then((result) => {
+      const data = result.data as RoutePosts_Query;
+      setPostDocs(data.forums ? data.forums.nodes : []);
+    });
 
-      const postsSubscription = () => null;
+    const postsSubscription = () => null;
 
-      return () => postsSubscription;
-    },
-    [false]
-  );
+    return () => postsSubscription;
+  }, [false]);
 
   return (
     <div>
