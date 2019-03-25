@@ -19,7 +19,7 @@
   "private": false,
   "husky": {
     "hooks": {
-      "pre-commit": "yarn prettier && git add -u"
+      "pre-commit": "yarn prettier"
     }
   },
   "dependencies": {
