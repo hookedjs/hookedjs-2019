@@ -49,7 +49,7 @@ const RouteInnerWrapper = ({routeProps, children}: RouteInnerWrapperProps) => {
 };
 
 export const Router = () => {
-  const SuspenseFallback = LoadingPage;
+  const SuspenseFallback = <LoadingPage/>;
 
   return (
     <BrowserRouter>
