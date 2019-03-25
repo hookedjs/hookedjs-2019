@@ -1,25 +1,25 @@
 import {RouteListItem} from "~/core/Router";
-import {Routes as BubblyRoutes, DemoRoutes as BubblyDemoRoutes} from "~/themes/bubbly-child/src/var/routing";
+import {Routes as SemanticRoutes, DemoRoutes as SemanticDemoRoutes} from "~/themes/semantic-child/src/var/Routes";
 
 export const AppRoutes: {[key: string]: RouteListItem} = {
-  Login: {...BubblyDemoRoutes.BubblyLoginDemo, path: `/login`},
-  Register: {...BubblyDemoRoutes.BubblyRegisterDemo, path: `/register`},
-  Lock: {...BubblyDemoRoutes.BubblyLockDemo, path: `/lock`},
-  UserProfile: {...BubblyDemoRoutes.BubblyUserProfileDemo, path: `/user/profile`},
-  Home: {...BubblyDemoRoutes.BubblyDashboardDemo, path: `/`},
-  Dashboard: {...BubblyDemoRoutes.BubblyDashboardDemo, path: `/dashboard`},
-  Posts: {...BubblyRoutes.Posts, path: `/posts`},
+  Login: {...SemanticDemoRoutes.SemanticLoginDemo, path: `/login`},
+  Register: {...SemanticDemoRoutes.SemanticRegisterDemo, path: `/register`},
+  Lock: {...SemanticDemoRoutes.SemanticLockDemo, path: `/lock`},
+  UserProfile: {...SemanticDemoRoutes.SemanticUserProfileDemo, path: `/user/profile`},
+  Home: {...SemanticDemoRoutes.SemanticDashboardDemo, path: `/`},
+  Dashboard: {...SemanticDemoRoutes.SemanticDashboardDemo, path: `/dashboard`},
+  Posts: {...SemanticRoutes.Posts, path: `/posts`},
 };
 
 export const AdminRoutes: {[key: string]: RouteListItem} = {
   // {path: "/admin", layout: SidebarLayout, view: Dashboard}
 };
 
-export const DemoRoutes = BubblyRoutes;
+export const DemoRoutes = SemanticRoutes;
 
 export const Routes: {[key: string]: RouteListItem} = {
-  ...BubblyDemoRoutes,
-  ...BubblyRoutes,
+  ...SemanticDemoRoutes,
+  ...SemanticRoutes,
   ...AppRoutes,
   ...AdminRoutes,
 };

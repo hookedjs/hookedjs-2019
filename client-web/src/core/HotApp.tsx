@@ -4,9 +4,9 @@ import {ThemeProvider} from "react-jss";
 
 import {RegisterServerWorker} from "./RegisterServiceWorker";
 import {Router} from "./Router";
-import {HelmetDefault} from "./components/Helmet";
+import {HelmetDefault} from "./web/components/modules/Helmet";
 
-import {Theme} from "~/var/config";
+import {JssTheme} from "~/var/config";
 
 // Import config to pull in
 import {AppName} from "~/var/config";
@@ -22,7 +22,7 @@ setConfig({logLevel: "error", pureSFC: true});
 
 const App = () => {
   return (
-    <ThemeProvider theme={Theme}>
+    <ThemeProvider theme={JssTheme}>
       <div className="app-container">
         <HelmetDefault />
         <Router />

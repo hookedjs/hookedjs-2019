@@ -8,7 +8,7 @@ import {User} from "~/core/schema/User";
 import {Sleep} from "../polyfills/Sleep";
 // import {UserSession, UserSessionJourneyItem, UserSessionUpdate} from "~/core/schema/UserSession";
 import {UserSessionJourneyItem} from "~/core/schema/UserSession";
-import {MobxPersist} from "../polyfills/MobxPersistance";
+import {MobxPersistOld} from "../polyfills/MobxPersistOld";
 import {EventStore} from "./EventStore";
 // import {TimeNow} from "../utils/TimeNow";
 import {Route} from "./RoutingStore";
@@ -412,4 +412,4 @@ export class AuthStoreClass {
 }
 
 export const AuthStore = new AuthStoreClass();
-MobxPersist(AuthStore);
+MobxPersistOld(AuthStore);

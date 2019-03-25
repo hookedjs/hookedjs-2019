@@ -1,14 +1,14 @@
 import {DemoRoutes, Routes} from "~/var/routing";
 
 // Import SCSS styles
-import "~/themes/bubbly-child/src/scss/main.scss?v=1.4.0";
+import "~/themes/semantic-child/src/scss/main.scss?v=1.4.0";
 
 export const AppName = "HookedJS";
 export const WebDomain = "hookedjs.github.com";
 
 export {Routes};
 
-export {LoadingModule, ErrorComponent} from "~/themes/bubbly-child/src/var/routing";
+export {LoadingModule, ErrorComponent} from "~/themes/semantic-child/src/var/Routes";
 
 export const HeaderLinks = [Routes.Register, Routes.Login, Routes.Lock];
 
@@ -16,9 +16,9 @@ export const SidebarNavLinks = [
   Routes.Dashboard,
   Routes.Posts,
   {
-    path: "/bubbly/demo/dashboard",
+    path: "/semantic/demo/dashboard",
     name: "Demo",
-    icon: Routes.BubblyTimelineDemo.icon,
+    icon: Routes.SemanticTimelineDemo.icon,
     views: Object.values(DemoRoutes),
   },
 ];

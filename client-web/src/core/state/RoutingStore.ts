@@ -8,7 +8,7 @@ import {Sleep} from "../polyfills/Sleep";
 import {StringContains} from "../polyfills/PrimitiveUtils";
 import * as GoogleAnalytics from "react-ga";
 import {GoogleAnalyticsTags} from "~/var/config";
-import {MobxPersist} from "../polyfills/MobxPersistance";
+import {MobxPersistOld} from "../polyfills/MobxPersistOld";
 import {EventStore} from "./EventStore";
 import {TimeNow} from "../polyfills/TimeNow";
 
@@ -115,4 +115,4 @@ export class RoutingStoreClass {
 }
 
 export const RoutingStore = new RoutingStoreClass();
-MobxPersist(RoutingStore);
+MobxPersistOld(RoutingStore);

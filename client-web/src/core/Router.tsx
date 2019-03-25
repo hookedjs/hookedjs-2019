@@ -2,27 +2,14 @@ import * as React from "react";
 import {Switch, Route, RouteComponentProps} from "react-router-dom";
 import {BrowserRouter} from "react-router-dom";
 import * as qs from "query-string";
-
+import {LoadingPage, ErrorPage, Routes} from "~/var/config";
 import {EventStore} from "~/core/state/EventStore";
-
-import {LoadingPage, ErrorPage} from "~/var/config";
-
-import {Routes} from "~/var/routing";
 import {TimeNow} from "~/core/polyfills/TimeNow";
-
-export interface RouteListItem {
-  name: string;
-  path: string;
-  layout: React.ComponentClass;
-  view: React.LazyExoticComponent<any>;
-  icon: React.ComponentType<any>;
-}
 
 type RouteInnerWrapperProps = {
   routeProps: RouteComponentProps;
   children: React.ReactNode;
 };
-
 // TODO: Insead of doing this weird wrapper, just use history.listen(location => {})
 const RouteInnerWrapper = ({routeProps, children}: RouteInnerWrapperProps) => {
   EventStore.dispatch("react.render", {
@@ -49,7 +36,7 @@ const RouteInnerWrapper = ({routeProps, children}: RouteInnerWrapperProps) => {
 };
 
 export const Router = () => {
-  const SuspenseFallback = <LoadingPage/>;
+  const SuspenseFallback = <LoadingPage />;
 
   return (
     <BrowserRouter>

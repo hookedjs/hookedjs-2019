@@ -3,7 +3,7 @@
  */
 
 import {observable} from "mobx";
-import {MobxPersist} from "../polyfills/MobxPersistance";
+import {MobxPersistOld} from "../polyfills/MobxPersistOld";
 import {TimeNow} from "../polyfills/TimeNow";
 
 export interface Event {
@@ -32,4 +32,4 @@ export class EventStoreClass {
 }
 
 export const EventStore = new EventStoreClass();
-MobxPersist(EventStore);
+MobxPersistOld(EventStore);

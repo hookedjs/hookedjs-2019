@@ -1,7 +1,7 @@
 import {action, autorun} from "mobx";
 import * as localforage from "localforage";
 
-export const MobxPersist = action(async (store: any) => {
+export const MobxPersistOld = action(async (store: any) => {
   for (let fieldName of store.persistedFields || []) {
     const storageKey = `${store.constructor.name}.${fieldName}`;
     // console.log(`mobx.StoreWrapper.hydrate: Hydrating ${storageKey}`);
