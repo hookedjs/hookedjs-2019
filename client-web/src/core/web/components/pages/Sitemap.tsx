@@ -3,8 +3,7 @@ import withSheet, {StyleCreator, WithSheet} from "react-jss";
 import {Sitemap as SitemapModule} from "../modules/Sitemap";
 
 const style: StyleCreator<any, any> = (theme) => ({
-  wrapper: {
-  },
+  wrapper: {},
 });
 
 export type props = WithSheet<typeof style> & {};

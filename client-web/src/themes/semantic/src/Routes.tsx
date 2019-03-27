@@ -9,7 +9,7 @@ import SidebarLayout from "./components/layouts/Sidebar";
 import {Error} from "./components/pages/Error";
 import {Loading} from "./components/pages/Loading";
 import {Loading as LoadingModule} from "./components/modules/Loading";
-export {Error as ErrorPage, Loading as LoadingPage, LoadingModule}
+export {Error as ErrorPage, Loading as LoadingPage, LoadingModule};
 
 //  Lazy Pages
 const Index = React.lazy(() => import("./components/pages/Index"));

@@ -8,8 +8,7 @@ import {Link} from "react-router-dom";
 import {Routes} from "~/var/config";
 
 const style: StyleCreator<any, any> = (theme) => ({
-  wrapper: {
-  },
+  wrapper: {},
 });
 
 export type props = WithSheet<typeof style> & {};

@@ -16,7 +16,9 @@ export const state = observable({
 });
 MobxPersist("ContactFormState", state);
 // Keep form up to date with lead intel
-observe(LeadProfile, () => {set(state, {...state, ...LeadProfile})});
+observe(LeadProfile, () => {
+  set(state, {...state, ...LeadProfile});
+});
 
 const style: StyleCreator<any, any> = (theme) => ({
   wrapper: {},
@@ -42,24 +44,22 @@ export const ContactForm = withSheet(style)(({classes}: props) => {
 
   return (
     <div className={classes.wrapper}>
-      <Observer render={() =>
-        !_state.submitted ?
-          (
+      <Observer
+        render={() =>
+          !_state.submitted ? (
             <Form onSubmit={onSubmit}>
-              <Form.Field label="Name" control="input" placeholder="name..." value={_state.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => (_state.name = e.target.value)}/>
-              <Form.Field label="Email" control="input" placeholder="email..." value={_state.email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => (_state.email = e.target.value)}/>
-              <Form.Field label="Message" control="textarea" placeholder="message..." value={_state.message} onChange={(e: React.ChangeEvent<HTMLInputElement>) => (_state.message = e.target.value)}/>
+              <Form.Field label="Name" control="input" placeholder="name..." value={_state.name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => (_state.name = e.target.value)} />
+              <Form.Field label="Email" control="input" placeholder="email..." value={_state.email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => (_state.email = e.target.value)} />
+              <Form.Field label="Message" control="textarea" placeholder="message..." value={_state.message} onChange={(e: React.ChangeEvent<HTMLInputElement>) => (_state.message = e.target.value)} />
               <Button type="submit" color="green">
-                <Icon name="checkmark"/> Submit
+                <Icon name="checkmark" /> Submit
               </Button>
             </Form>
+          ) : (
+            <p>Got it, Thanks!</p>
           )
-          : (
-            <p>
-              Got it, Thanks!
-            </p>
-          )
-      }/>
+        }
+      />
     </div>
   );
 });

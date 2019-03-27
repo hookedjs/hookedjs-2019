@@ -12,8 +12,10 @@ const style: StyleCreator<any, any> = (theme) => ({
 export type props = WithSheet<typeof style> & {};
 
 export const Sidebar = withSheet(style)(({classes}: props) => {
-  return <div className={classes.wrapper}>
-    Sidebar
-    <Sitemap />
-  </div>;
+  return (
+    <div className={classes.wrapper}>
+      Sidebar
+      <Sitemap />
+    </div>
+  );
 });

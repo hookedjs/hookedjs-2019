@@ -2,8 +2,7 @@ import React from "react";
 import withSheet, {StyleCreator, WithSheet} from "react-jss";
 
 const style: StyleCreator<any, any> = (theme) => ({
-  wrapper: {
-  },
+  wrapper: {},
 });
 
 export type props = WithSheet<typeof style> & {};

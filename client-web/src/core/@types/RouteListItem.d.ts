@@ -6,4 +6,4 @@ export type RouteListItem = {
   layout: React.ComponentClass;
   view: React.LazyExoticComponent<any>;
   icon: React.ComponentType<any>;
-}
+};
