@@ -8,7 +8,7 @@ export const WebDomain = "hookedjs.github.com";
 
 export {Routes};
 
-export {LoadingModule, ErrorComponent} from "~/themes/semantic-child/src/var/Routes";
+export {LoadingModule, ErrorComponent} from "~/themes/semantic-child/src/Routes";
 
 export const HeaderLinks = [Routes.Register, Routes.Login, Routes.Lock];
 

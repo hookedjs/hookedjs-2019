@@ -1,5 +1,5 @@
 import {RouteListItem} from "~/core/Router";
-import {Routes as SemanticRoutes, DemoRoutes as SemanticDemoRoutes} from "~/themes/semantic-child/src/var/Routes";
+import {Routes as SemanticRoutes, DemoRoutes as SemanticDemoRoutes} from "~/themes/semantic-child/src/Routes";
 
 export const AppRoutes: {[key: string]: RouteListItem} = {
   Login: {...SemanticDemoRoutes.SemanticLoginDemo, path: `/login`},

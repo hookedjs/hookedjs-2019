@@ -1,0 +1,11 @@
+{
+  "name": "semantic-theme-child",
+  "author": "TheoryHQ <hi@theoryhq.com>",
+  "private": false,
+  "version": "0.0.1",
+  "scripts": {},
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

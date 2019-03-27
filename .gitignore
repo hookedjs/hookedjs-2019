@@ -30,8 +30,8 @@ __generated__
 client-react-2
 
 client-web/build
-client-web/src/var
-client-web/src/static
-client-web/src/themes
+#client-web/src/var
+#client-web/src/static
+#client-web/src/themes
 
-server-koa2/src/server.ts
+#server-koa2/src/server.ts

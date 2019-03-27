@@ -1,0 +1,16 @@
+{
+  "name": "hooked-semantic-theme",
+  "author": "Brian Dombrowski <bdombro@gmail.com>",
+  "private": false,
+  "version": "0.0.1",
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {
+    "await-delay": "1.0.0",
+    "is-email": "^1.0.0",
+    "react-icon-base": "2.1.2",
+    "react-player": "^1.9.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.86.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["../../*"],
+      "@semantic/*": ["../semantic/src/*"],
+      "@semantic-child/*": ["src/*"],
+      "*": ["../semantic/node_modules/*"]
+    }
+  }
+}
