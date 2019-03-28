@@ -1,7 +1,7 @@
 import React from "react";
 import withSheet, {StyleCreator, WithSheet} from "react-jss";
 import {Button, Modal} from "semantic-ui-react";
-import {Logo} from "~/var/config";
+import {Logo} from "~/config";
 import {ContactForm, state as ContactFormState} from "./ContactForm";
 
 const style: StyleCreator<any, any> = (theme) => ({

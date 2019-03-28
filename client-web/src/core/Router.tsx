@@ -2,7 +2,7 @@ import * as React from "react";
 import {Switch, Route, RouteComponentProps} from "react-router-dom";
 import {BrowserRouter} from "react-router-dom";
 import * as qs from "query-string";
-import {LoadingPage, ErrorPage, Routes} from "~/var/config";
+import {LoadingPage, ErrorPage, Routes} from "~/config";
 import {EventStore} from "~/core/state/EventStore";
 import {TimeNow} from "~/core/polyfills/TimeNow";
 

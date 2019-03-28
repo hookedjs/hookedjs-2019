@@ -7,7 +7,7 @@ import {observable, autorun, computed} from "mobx";
 import {Sleep} from "../polyfills/Sleep";
 import {StringContains} from "../polyfills/PrimitiveUtils";
 import * as GoogleAnalytics from "react-ga";
-import {GoogleAnalyticsTags} from "~/var/config";
+import {GoogleAnalyticsTags} from "~/config";
 import {MobxPersistOld} from "../polyfills/MobxPersistOld";
 import {EventStore} from "./EventStore";
 import {TimeNow} from "../polyfills/TimeNow";

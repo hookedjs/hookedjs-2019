@@ -1,5 +1,5 @@
 import {Device} from "~/core/schema/Device";
-import {IpgeolocationioKey} from "~/var/config";
+import {IpgeolocationioKey} from "~/config";
 
 export interface GeoIntel {
   ip: "71.179.91.210";

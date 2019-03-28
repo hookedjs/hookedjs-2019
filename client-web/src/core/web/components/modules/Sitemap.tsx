@@ -5,7 +5,7 @@
 import React from "react";
 import withSheet, {StyleCreator, WithSheet} from "react-jss";
 import {Link} from "react-router-dom";
-import {Routes} from "~/var/config";
+import {Routes} from "~/config";
 
 const style: StyleCreator<any, any> = (theme) => ({
   wrapper: {},

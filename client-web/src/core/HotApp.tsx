@@ -6,10 +6,10 @@ import {RegisterServerWorker} from "./RegisterServiceWorker";
 import {Router} from "./Router";
 import {HelmetDefault} from "./web/components/modules/Helmet";
 
-import {JssTheme} from "~/var/config";
+import {JssTheme} from "~/config";
 
 // Import config to pull in
-import {AppName} from "~/var/config";
+import {AppName} from "~/config";
 
 console.log(`HotApp: Starting ${AppName}`);
 

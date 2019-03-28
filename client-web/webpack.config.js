@@ -112,10 +112,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: path.resolve(sourcePath, 'static', 'index.html') }),
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development'),
-        PLATFORM_ENV: JSON.stringify('web'),
-      },
+      // This will replace env variables during build
+      'process.env': JSON.stringify(process.env)
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
