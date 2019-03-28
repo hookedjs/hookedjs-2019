@@ -1,5 +1,5 @@
 import * as React from "react";
-import {RouteListItem} from "core/@types/RouteListItem";
+import {RouteListItem} from "~/core/@types/RouteListItem";
 import {FiAperture as FiApertureIcon} from "react-icons/fi";
 
 // Layouts
@@ -16,7 +16,7 @@ const Index = React.lazy(() => import("./components/pages/Index"));
 const Todos = React.lazy(() => import("./components/pages/Todos"));
 
 export const Routes: {[key: string]: RouteListItem} = {
-  SemanticIndex: {name: `Semantic Theme Index`, path: `/semantic`, layout: SidebarLayout, view: Index, icon: FiApertureIcon},
+  Home: {name: `Semantic Theme Index`, path: `/`, layout: SidebarLayout, view: Index, icon: FiApertureIcon},
   SemanticError: {name: `Semantic Error`, path: `/semantic/error`, layout: SidebarLayout, view: Error as any, icon: FiApertureIcon},
   SemanticLoading: {name: `Semantic Loading`, path: `/semantic/loading`, layout: SidebarLayout, view: Loading as any, icon: FiApertureIcon},
   SemanticTodos: {name: `Semantic Todos Page`, path: `/semantic/todos`, layout: SidebarLayout, view: Todos, icon: FiApertureIcon},

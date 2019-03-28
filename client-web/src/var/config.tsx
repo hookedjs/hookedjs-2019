@@ -6,15 +6,15 @@ export const WebDomain = "vestedinu.com";
 import Logo from "~/static/logo-white.svg";
 export {Logo, Logo as LogoWhite};
 
-export {JssTheme} from "~/themes/semantic-child/src/JssTheme";
+export {JssTheme} from "~/themes/semantic/src/JssTheme";
 
-export {LoadingModule, LoadingPage, ErrorPage} from "~/themes/semantic-child/src/Routes";
+export {LoadingModule, LoadingPage, ErrorPage} from "~/themes/semantic/src/Routes";
 
 import {Routes as CoreRoutes} from "~/core/web/Routes";
-import {Routes as SemanticChildRoutes} from "~/themes/semantic-child/src/Routes";
+import {Routes as SemanticRoutes} from "~/themes/semantic/src/Routes";
 export const Routes: {[key: string]: RouteListItem} = {
   ...CoreRoutes,
-  ...SemanticChildRoutes,
+  ...SemanticRoutes,
 };
 
 export const GoogleAnalyticsTags = {
