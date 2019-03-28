@@ -3,6 +3,7 @@ import {RouteListItem} from "~/core/@types/RouteListItem";
 import {FiAperture as FiApertureIcon} from "react-icons/fi";
 
 // Layouts
+// import BlankLayout from "~/core/web/components/layouts/Blank";
 import SidebarLayout from "./components/layouts/Sidebar";
 
 // Non-lazy pages
