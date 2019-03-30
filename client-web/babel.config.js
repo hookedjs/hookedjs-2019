@@ -18,6 +18,7 @@ module.exports = function(api) {
       ["@babel/plugin-proposal-class-properties", { "loose": true }],
       "@babel/plugin-proposal-json-strings",
       "@babel/plugin-syntax-dynamic-import",
+      "@babel/transform-runtime",
     ],
     env: {
       development: {
