@@ -6,24 +6,24 @@ import {InstallStandardKoaMiddlewares} from "~/core/middleware/InstallStandardKo
 import {InstallSession} from "~/core/middleware/InstallSession";
 import {InstallPassport} from "~/core/middleware/InstallPassport";
 import {InstallHasura} from "~/core/middleware/InstallHasura";
+import {InstallRestApi} from "~/core/middleware/InstallRestApi";
 import {InstallWebApp} from "~/core/middleware/InstallWebApp";
 
-export const Server = () => {
-  SanitiseEnv();
+SanitiseEnv();
 
-  const rootPgPool = new pg.Pool({
-    connectionString: process.env.ROOT_DATABASE_URL,
-  });
+const rootPgPool = new pg.Pool({
+  connectionString: process.env.ROOT_DATABASE_URL,
+});
 
-  const app = new Koa();
-  const server = http.createServer(app.callback());
+const app = new Koa();
+const server = http.createServer(app.callback());
 
-  InstallStandardKoaMiddlewares(app);
-  InstallSession(app);
-  InstallPassport(app, {rootPgPool});
-  InstallHasura(app);
-  InstallWebApp(app);
+InstallStandardKoaMiddlewares(app);
+InstallSession(app);
+InstallPassport(app, {rootPgPool});
+InstallRestApi(app);
+InstallHasura(app);
+InstallWebApp(app);
 
-  server.listen(process.env.PORT);
-  console.log(`Listening on port ${process.env.PORT}`);
-};
+server.listen(3000);
+console.log(`Listening on port 3000);

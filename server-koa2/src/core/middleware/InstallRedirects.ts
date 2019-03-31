@@ -1,4 +1,5 @@
 // Not currently in use
+// May also consider koa-redirect
 
 export const InstallRedirects = (app) => {
   // Example redirect

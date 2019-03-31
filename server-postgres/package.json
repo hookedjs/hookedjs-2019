@@ -1,5 +1,5 @@
 {
-  "name": "hooked-server-postgres",
+  "name": "hookedjs-server-postgres",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {

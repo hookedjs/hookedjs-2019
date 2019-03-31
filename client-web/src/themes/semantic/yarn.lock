@@ -3,9 +3,9 @@
 
 
 "@babel/runtime@^7.1.2":
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.2.tgz#f5ab6897320f16decd855eed70b705908a313fe8"
-  integrity sha512-7Bl2rALb7HpvXFL7TETNzKSAeBVCPHELzc0C//9FCxN8nsiueWSJBqaF+2oIJScyILStASR/Cx5WMkXGYTiJFA==
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.3.tgz#79888e452034223ad9609187a0ad1fe0d2ad4bdc"
+  integrity sha512-9lsJwJLxDh/T3Q3SZszfWOTkk3pHbkmH+3KY+zwIDmsNlxsumuhS2TH3NIpktU4kNvfzy+k3eLT7aTJSPTo0OA==
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -94,14 +94,14 @@ react-icon-base@2.1.2:
   integrity sha512-NRlRo0RPxWRMQT7osj8UCBSSXsGOxhF1pre84ildhuft5S2U382NOs7tg29osWSjbO90L2a3VTCqadA/LnAzHQ==
 
 react-is@^16.7.0, react-is@^16.8.1:
-  version "16.8.4"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
-  integrity sha512-PVadd+WaUDOAciICm/J1waJaSvgq+4rHE/K70j0PFqKhkTBsPv/82UGQJNXAngz1fOQLLxI6z1sEDmJDQhCTAA==
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
+  integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
-react-player@^1.9.3:
-  version "1.9.3"
-  resolved "https://registry.yarnpkg.com/react-player/-/react-player-1.9.3.tgz#ad74d4c3bf62f2d66ce7c79636642486a6ad7711"
-  integrity sha512-EruSLtMcnTrwy9F99hG1dAVVSg0ZNQDB4Df6CnKLkFcCppOCZrQAPq+abZOcuXun7VRaXPGpkOqhLCdiLfZZfw==
+react-player@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/react-player/-/react-player-1.10.0.tgz#65c1add36e3831846003685f3d9e5781752e77c0"
+  integrity sha512-fmL+/VtwJ2C+PgXxu1/4V0q7+pTaKFMHWnjkq56KhKOi68xsYVSQs2CKkMADiz8l/ZtuSIO0+8fKO0GDPX668w==
   dependencies:
     deepmerge "^3.0.0"
     load-script "^1.0.0"
@@ -116,13 +116,6 @@ semantic-ui-css@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.4.1.tgz#f5aea39fafb787cbd905ec724272a3f9cba9004a"
   integrity sha512-Pkp0p9oWOxlH0kODx7qFpIRYpK1T4WJOO4lNnpNPOoWKCrYsfHqYSKgk5fHfQtnWnsAKy7nLJMW02bgDWWFZFg==
-  dependencies:
-    jquery x.*
-
-semantic-ui-less@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/semantic-ui-less/-/semantic-ui-less-2.4.1.tgz#f5fe6d9160b6655a2f552e7ea553c5b896c2f1aa"
-  integrity sha512-/+nhPV6If2ydCz89/SSWzYD8ualDtjh4Tk3F6cqRj2luZj1DRjJ2nM9NKqmeyLlQFNFM94wpnpKXcjxRzZh5GA==
   dependencies:
     jquery x.*
 

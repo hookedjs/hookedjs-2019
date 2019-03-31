@@ -2,8 +2,7 @@
   "$schema": "http://json.schemastore.org/solidaritySchema",
   "requirements": {
     "Yarn": [{ "rule": "cli", "binary": "yarn", "semver": "^1.9.4" }],
-    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=10" }],
-    "Typescript": [{ "rule": "cli", "binary": "tsc", "semver": ">=3.0.3" }],
-    "TSLint": [{ "rule": "cli", "binary": "tslint", "semver": ">=5.11.0" }]
+    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=11.7.0" }],
+    "Typescript": [{ "rule": "cli", "binary": "tsc", "semver": ">=3.0.3" }]
   }
 }

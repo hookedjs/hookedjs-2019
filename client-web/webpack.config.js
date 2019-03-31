@@ -13,15 +13,16 @@
  * Need to decide if we should use react-app-rewired or maybe just use webpack environment features
  */
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = !['production','staging'].includes(process.env.NODE_ENV);
 
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // variables
 const sourcePath = path.join(__dirname, './src');
@@ -45,13 +46,11 @@ const cssLoaders = [
   devMode ? {loader: 'style-loader', options: {sourceMap: true}} : MiniCssExtractPlugin.loader,
   {loader: 'css-loader', options: {sourceMap: devMode}},
   {loader: 'postcss-loader', options: {
-    ident: 'postcss', sourceMap: devMode,
+      ident: 'postcss', sourceMap: devMode,
       plugins: () => [require('postcss-preset-env')({stage: 0, browsers: 'last 1 Chrome version'})] }
   },
 ];
 
-
-// TODO: After removing bootstrap dependency, check if lodash is still being depended on :-(.
 
 module.exports = {
   context: sourcePath,
@@ -93,7 +92,12 @@ module.exports = {
           {loader: 'less-loader', options: {sourceMap: devMode}},
         ]),
       },
-      { test: /\.css$/, use: cssLoaders },
+      {
+        test: /\.css$/,
+        use: cssLoaders.concat([
+          {loader: require('styled-jsx/webpack').loader},
+        ])
+      },
 
 
       { test: /\.(mjs|js|tsx|ts)$/, exclude: /node_modules/, loader: 'babel-loader' },
@@ -115,6 +119,7 @@ module.exports = {
       // This will replace env variables during build
       'process.env': JSON.stringify(process.env)
     }),
+    process.env.ANALYZE ? new BundleAnalyzerPlugin() : () => null,
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -123,29 +128,40 @@ module.exports = {
       // filename: devMode ? '[name].css' : `css-${nowString}/[name].css`,
       // chunkFilename: devMode ? '[id].css' : `css-${nowString}/[name].[id].css`,
     }),
+    !devMode ? new CompressionPlugin() : () => null,
+    !devMode ? new CompressionPlugin({
+      filename: '[path].br[query]',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false
+    }) : () => null,
+
     // new webpack.optimize.OccurrenceOrderPlugin(),
     // new webpack.NoEmitOnErrorsPlugin(),
     // new webpack.NamedModulesPlugin(),
-    // new LodashModuleReplacementPlugin({
-    //   // This plugin stripts bulky features.
-    //   // Set the feature to true to include it.
-    //   // shorthands: true,
-    //   // cloning: true,
-    //   // currying: true,
-    //   // caching: true,
-    //   // collections: true,
-    //   // exotics: true,
-    //   // guards: true,
-    //   // metadata: true,
-    //   // deburring: true,
-    //   // unicode: true,
-    //   // chaining: true,
-    //   // memoizing: true,
-    //   // coercions: true,
-    //   flattening: true, // required for bootstrap typeahead module
-    //   // paths: true,
-    //   // placeholders: true,
-    // }),
+    new LodashModuleReplacementPlugin({
+      // This plugin stripts bulky features.
+      // Set the feature to true to include it.
+      shorthands: true,
+      // cloning: true,
+      currying: true,
+      // caching: true,
+      collections: true,
+      // exotics: true,
+      // guards: true,
+      // metadata: true,
+      // deburring: true,
+      // unicode: true,
+      // chaining: true,
+      // memoizing: true,
+      // coercions: true,
+      // flattening: true, // required for bootstrap typeahead module
+      // paths: true,
+      // placeholders: true,
+    }),
   ],
   devServer: {
     contentBase: outPath,

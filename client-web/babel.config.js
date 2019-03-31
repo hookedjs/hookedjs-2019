@@ -19,6 +19,9 @@ module.exports = function(api) {
       "@babel/plugin-proposal-json-strings",
       "@babel/plugin-syntax-dynamic-import",
       "@babel/transform-runtime",
+      "babel-plugin-macros",
+      ["styled-jsx/babel", { "sourceMaps": true }],
+      "lodash",
     ],
     env: {
       development: {

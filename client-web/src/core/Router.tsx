@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {Switch, Route, RouteComponentProps} from "react-router-dom";
 import {BrowserRouter} from "react-router-dom";
 import * as qs from "query-string";

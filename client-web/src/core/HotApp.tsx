@@ -1,8 +1,8 @@
-import * as React from "react";
+import React from "react";
 import {hot, setConfig} from "react-hot-loader";
 import {ThemeProvider} from "react-jss";
 
-import {RegisterServerWorker} from "./RegisterServiceWorker";
+// import {RegisterServerWorker} from "./RegisterServiceWorker";
 import {Router} from "./Router";
 import {HelmetDefault} from "./web/components/modules/Helmet";
 
@@ -14,7 +14,7 @@ import {AppName} from "~/config";
 console.log(`HotApp: Starting ${AppName}`);
 
 // Service Worker
-RegisterServerWorker();
+// RegisterServerWorker();
 
 // HOt reload logging level and pureSFC makes hot reload play nice with hooks
 // @ts-ignore: pureSFC isn't found for some reason

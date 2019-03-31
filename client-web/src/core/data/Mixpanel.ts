@@ -1,7 +1,8 @@
 // var mixpanel = require('mixpanel-browser');
 import mixpanel from "mixpanel-browser";
+import {MixpanelTag} from "src/config";
 
-mixpanel.init(ENV.MIXPANEL_ANALYTICS_ID);
+mixpanel.init(MixpanelTag);
 
 // Set Last Touch UTM Tags
 function getQueryParam(url, param) {
