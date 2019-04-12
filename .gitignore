@@ -26,10 +26,7 @@ __generated__
 .env.test.local
 .env.production.local
 
-
-client-react-2
-
-client-web/build
+build
 #client-web/src/var
 #client-web/src/static
 #client-web/src/themes
