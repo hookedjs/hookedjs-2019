@@ -39,11 +39,11 @@
   "devDependencies": {
     "@types/koa": "^2.0.48",
     "@types/koa-route": "^3.2.4",
-    "@types/node": "^11.13.0",
+    "@types/node": "^11.13.4",
     "@types/pg": "^7.4.14",
     "ts-node-dev": "^1.0.0-pre.32",
     "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.3"
   },
   "engines": {
     "node": ">11.7",
