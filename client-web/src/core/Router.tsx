@@ -1,17 +1,22 @@
 import React from "react";
-import {Switch, Route, RouteComponentProps} from "react-router-dom";
-import {BrowserRouter} from "react-router-dom";
+import { Switch, Route, RouteComponentProps } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import * as qs from "query-string";
-import {LoadingPage, ErrorPage, Routes} from "~/config";
-import {EventStore} from "~/core/state/EventStore";
-import {TimeNow} from "~/core/polyfills/TimeNow";
+import { paramCase } from "change-case";
+import { ThemeProvider } from "styled-components";
+import { EventStore } from "~/core/state/EventStore";
+import { TimeNow } from "~/core/polyfills/TimeNow";
+import Theme from "~/theme/src/Theme";
+import { Error as ErrorPage } from "../theme/src/components/pages/Error";
+import { Loading as LoadingPage } from "../theme/src/components/pages/Loading";
 
 type RouteInnerWrapperProps = {
   routeProps: RouteComponentProps;
   children: React.ReactNode;
 };
-// TODO: Insead of doing this weird wrapper, just use history.listen(location => {})
-const RouteInnerWrapper = ({routeProps, children}: RouteInnerWrapperProps) => {
+// TODO: Insead of doing this weird wrapper, maybe use history.listen(location => {})
+const RouteInnerWrapper = ({ routeProps, children }: RouteInnerWrapperProps) => {
+  // console.log(routeProps.location.pathname);
   EventStore.dispatch("react.render", {
     route: {
       ts: TimeNow(),
@@ -20,46 +25,49 @@ const RouteInnerWrapper = ({routeProps, children}: RouteInnerWrapperProps) => {
       params: {
         ...routeProps.match.params,
         ...routeProps.location.state,
-        ...qs.parse(routeProps.location.search),
+        ...qs.parse(routeProps.location.search)
       },
       isExact: routeProps.match.isExact,
-      url: routeProps.match.url,
+      url: routeProps.match.url
       // key: routeProps.location.key,
       // context: routeProps.staticContext,
       // hash: routeProps.location.hash,
       // search: routeProps.location.search,
       // pathname: routeProps.location.pathname,
       // queryArgs: qs.parse(routeProps.location.search),
-    },
+    }
   });
   return <React.Fragment>{children}</React.Fragment>;
 };
 
 export const Router = () => {
-  const SuspenseFallback = <LoadingPage />;
+  const SuspenseFallback = <LoadingPage/>;
 
   return (
-    <BrowserRouter>
-      <Switch>
-        {Object.values(Routes).map((route, routeIndex) => (
-          <Route
-            key={`route-${route.path}`}
-            exact
-            path={route.path}
-            render={(routeProps) => (
-              <RouteInnerWrapper routeProps={routeProps}>
-                <route.layout>
-                  <React.Suspense fallback={SuspenseFallback}>
-                    <route.view />
-                  </React.Suspense>
-                </route.layout>
-              </RouteInnerWrapper>
-            )}
-          />
-        ))}
+    <ThemeProvider theme={Theme}>
+      <BrowserRouter>
+        <Switch>
+          {PAGES.map(page => (
+            <Route
+              key={`route-${page}`}
+              exact
+              path={page === "Index" ? "/" : `/${paramCase(page)}`}
+              render={(routeProps) => {
+                const PageModule = React.lazy(() => import(`../theme/src/components/pages/${page}`));
+                return (
+                  <RouteInnerWrapper routeProps={routeProps}>
+                    <React.Suspense fallback={SuspenseFallback}>
+                      <PageModule/>
+                    </React.Suspense>
+                  </RouteInnerWrapper>
+                );
+              }}
+            />
+          ))}
 
-        <Route render={(props) => <RouteInnerWrapper routeProps={props}>{ErrorPage}</RouteInnerWrapper>} />
-      </Switch>
-    </BrowserRouter>
+          <Route render={(props) => <RouteInnerWrapper routeProps={props}><ErrorPage/></RouteInnerWrapper>}/>
+        </Switch>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };

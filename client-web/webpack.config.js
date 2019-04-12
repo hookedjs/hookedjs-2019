@@ -5,6 +5,7 @@
  * https://github.com/rokoroku/react-mobx-typescript-boilerplate
  * https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark
  * https://stackoverflow.com/questions/49912084/webpack-run-both-less-and-scss-compilation-extract-text-plugin-not-working-on
+ * https://medium.com/@michalozogan/how-to-split-moment-js-locales-to-chunks-with-webpack-de9e25caccea
  *
  * For native, check out
  * - https://github.com/timarney/react-app-rewired
@@ -19,15 +20,15 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+// const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // variables
 const sourcePath = path.join(__dirname, './src');
-const themesPath = path.join(__dirname, './src/themes');
-const themes = fs.readdirSync(themesPath);
+const pagesPath = path.join(sourcePath, './theme/src/components/pages');
+const pages = fs.readdirSync(pagesPath).map(p => p.split(".tsx")[0]);
 const outPath = path.join(__dirname, './build');
 
 function getDateString() {
@@ -69,11 +70,10 @@ module.exports = {
     modules: [
       sourcePath,
       path.join(__dirname, './node_modules'),
-      ...themes.map((t) => path.resolve(themesPath, `./${t}/node_modules`)),
+      path.resolve(sourcePath, `./theme/node_modules`)
     ],
     alias: {
-      "~": sourcePath,
-      ...themes.reduce((a,t) => {a[`@${t}`] = path.join(themesPath, `./${t}/src`); return a;}, {}),
+      "~": sourcePath
     }
   },
   module: {
@@ -82,21 +82,22 @@ module.exports = {
       // Styles
       {
         test: /\.(sass|scss)$/,
-        use: cssLoaders.concat([
-          {loader: 'sass-loader', options: {sourceMap: devMode}}
-        ]),
+        use: [].concat(
+          [{loader: 'sass-loader', options: {sourceMap: devMode}}],
+          cssLoaders
+        ),
       },
       {
         test: /\.less$/,
-        use: cssLoaders.concat([
-          {loader: 'less-loader', options: {sourceMap: devMode}},
-        ]),
+        use: [].concat(
+          [{loader: 'less-loader', options: {sourceMap: devMode}}],
+          cssLoaders),
       },
       {
         test: /\.css$/,
-        use: cssLoaders.concat([
-          {loader: require('styled-jsx/webpack').loader},
-        ])
+        use: [].concat(
+          // [{loader: require('styled-jsx/webpack').loader}],
+          cssLoaders)
       },
 
 
@@ -117,7 +118,8 @@ module.exports = {
     new HtmlWebpackPlugin({ template: path.resolve(sourcePath, 'static', 'index.html') }),
     new webpack.DefinePlugin({
       // This will replace env variables during build
-      'process.env': JSON.stringify(process.env)
+      'process.env': JSON.stringify(process.env),
+      'PAGES': JSON.stringify(pages)
     }),
     process.env.ANALYZE ? new BundleAnalyzerPlugin() : () => null,
     new MiniCssExtractPlugin({
@@ -139,29 +141,31 @@ module.exports = {
       deleteOriginalAssets: false
     }) : () => null,
 
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
     // new webpack.optimize.OccurrenceOrderPlugin(),
     // new webpack.NoEmitOnErrorsPlugin(),
     // new webpack.NamedModulesPlugin(),
-    new LodashModuleReplacementPlugin({
-      // This plugin stripts bulky features.
-      // Set the feature to true to include it.
-      shorthands: true,
-      // cloning: true,
-      currying: true,
-      // caching: true,
-      collections: true,
-      // exotics: true,
-      // guards: true,
-      // metadata: true,
-      // deburring: true,
-      // unicode: true,
-      // chaining: true,
-      // memoizing: true,
-      // coercions: true,
-      // flattening: true, // required for bootstrap typeahead module
-      // paths: true,
-      // placeholders: true,
-    }),
+    // new LodashModuleReplacementPlugin({
+    //   // This plugin stripts bulky features.
+    //   // Set the feature to true to include it.
+    //   shorthands: true,
+    //   // cloning: true,
+    //   currying: true,
+    //   // caching: true,
+    //   collections: true,
+    //   // exotics: true,
+    //   // guards: true,
+    //   // metadata: true,
+    //   // deburring: true,
+    //   // unicode: true,
+    //   // chaining: true,
+    //   // memoizing: true,
+    //   // coercions: true,
+    //   // flattening: true, // required for bootstrap typeahead module
+    //   // paths: true,
+    //   // placeholders: true,
+    // }),
   ],
   devServer: {
     contentBase: outPath,

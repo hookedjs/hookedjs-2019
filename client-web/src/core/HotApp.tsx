@@ -1,12 +1,9 @@
 import React from "react";
 import {hot, setConfig} from "react-hot-loader";
-import {ThemeProvider} from "react-jss";
 
 // import {RegisterServerWorker} from "./RegisterServiceWorker";
 import {Router} from "./Router";
-import {HelmetDefault} from "./web/components/modules/Helmet";
-
-import {JssTheme} from "~/config";
+import {HelmetDefault} from "./web/Helmet";
 
 // Import config to pull in
 import {AppName} from "~/config";
@@ -22,12 +19,10 @@ setConfig({logLevel: "error", pureSFC: true});
 
 const App = () => {
   return (
-    <ThemeProvider theme={JssTheme}>
-      <div className="app-container">
-        <HelmetDefault />
-        <Router />
-      </div>
-    </ThemeProvider>
+    <div className="app-container">
+      <HelmetDefault/>
+      <Router/>
+    </div>
   );
 };
 
