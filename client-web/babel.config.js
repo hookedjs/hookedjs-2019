@@ -48,7 +48,7 @@ module.exports = function(api) {
     },
     babelrcRoots: [
       ".",
-      "src/themes/*",
+      "../../client-web",
     ],
   }
 };

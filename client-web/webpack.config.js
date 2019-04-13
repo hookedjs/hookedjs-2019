@@ -24,12 +24,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const shell = require('shelljs');
 
 // variables
-const sourcePath = path.join(__dirname, './src');
-const pagesPath = path.join(sourcePath, './theme/src/components/pages');
+const sourcePath = path.resolve(__dirname);
+const projectPath = path.resolve(__dirname, '../../../');
+const pagesPath = path.join(projectPath, './client-web/pages');
 const pages = fs.readdirSync(pagesPath).map(p => p.split(".tsx")[0]);
-const outPath = path.join(__dirname, './build');
+const outPath = path.join(projectPath, './client-web/build');
+
+shell.exec(`rm -rf build && cp -rf static build`, {silent:true, cwd: path.join(projectPath, "./client-web")});
 
 function getDateString() {
   const date = new Date();
@@ -56,7 +60,7 @@ const cssLoaders = [
 module.exports = {
   context: sourcePath,
   entry: {
-    main: './core/Main.tsx',
+    main: './Main.tsx',
   },
   output: {
     path: outPath,
@@ -69,11 +73,12 @@ module.exports = {
     extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
     modules: [
       sourcePath,
-      path.join(__dirname, './node_modules'),
-      path.resolve(sourcePath, `./theme/node_modules`)
+      path.resolve(sourcePath, '../node_modules'),
+      path.resolve(projectPath, `./node_modules`)
     ],
     alias: {
-      "~": sourcePath
+      "~": sourcePath,
+      "@project": projectPath,
     }
   },
   module: {
@@ -101,7 +106,7 @@ module.exports = {
       },
 
 
-      { test: /\.(mjs|js|tsx|ts)$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.(mjs|js|tsx|ts)$/, loader: 'babel-loader' },
       { test: /\.(graphql|gql)$/, exclude: /node_modules/, use: 'graphql-tag/loader' },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -115,11 +120,12 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: path.resolve(sourcePath, 'static', 'index.html') }),
+    new HtmlWebpackPlugin({ template: path.resolve(projectPath, "client-web/static/index.html") }),
     new webpack.DefinePlugin({
       // This will replace env variables during build
       'process.env': JSON.stringify(process.env),
-      'PAGES': JSON.stringify(pages)
+      'PAGES': JSON.stringify(pages),
+      'PROJECT_PATH': projectPath,
     }),
     process.env.ANALYZE ? new BundleAnalyzerPlugin() : () => null,
     new MiniCssExtractPlugin({
