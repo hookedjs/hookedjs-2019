@@ -6,7 +6,7 @@ import {Router} from "./Router";
 import {HelmetDefault} from "./web/Helmet";
 
 // Import config to pull in
-import {AppName} from "../../../client-web/config";
+import {AppName} from "@project/client-web/config";
 
 console.log(`HotApp: Starting ${AppName}`);
 

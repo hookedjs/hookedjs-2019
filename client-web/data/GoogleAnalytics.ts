@@ -1,5 +1,5 @@
 import * as ReactGa from "react-ga";
-import {GoogleAnalyticsTag} from "../../../../client-web/config";
+import {GoogleAnalyticsTag} from "@project/client-web/config";
 
 ReactGa.initialize(GoogleAnalyticsTag);
 

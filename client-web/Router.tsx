@@ -6,9 +6,9 @@ import { paramCase } from "change-case";
 import { ThemeProvider } from "styled-components";
 import { EventStore } from "./state/EventStore";
 import { TimeNow } from "./polyfills/TimeNow";
-import Theme from "../../../client-web/Theme";
-import { Error as ErrorPage } from "../../../client-web/pages/Error";
-import { Loading as LoadingPage } from "../../../client-web/pages/Loading";
+import Theme from "@project/client-web/Theme";
+import { Error as ErrorPage } from "@project/client-web/pages/Error";
+import { Loading as LoadingPage } from "@project/client-web/pages/Loading";
 
 type RouteInnerWrapperProps = {
   routeProps: RouteComponentProps;
@@ -53,8 +53,8 @@ export const Router = () => {
               exact
               path={page === "Index" ? "/" : `/${paramCase(page)}`}
               render={(routeProps) => {
-                console.log(`../../../client-web/pages/${page}`)
-                const PageModule = React.lazy(() => import(`../../../client-web/pages/${page}`));
+                console.log(`@project/client-web/pages/${page}`)
+                const PageModule = React.lazy(() => import(`@project/client-web/pages/${page}`));
                 return (
                   <RouteInnerWrapper routeProps={routeProps}>
                     <React.Suspense fallback={SuspenseFallback}>

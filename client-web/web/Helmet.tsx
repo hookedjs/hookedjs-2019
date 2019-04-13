@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Helmet} from "react-helmet";
-import {AppName} from "../../../../client-web/config";
+import {AppName} from "@project/client-web/config";
 
 export class HelmetDefault extends React.PureComponent<{title?: string}> {
   render() {

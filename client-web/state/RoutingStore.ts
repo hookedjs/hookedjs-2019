@@ -7,7 +7,7 @@ import {observable, autorun, computed} from "mobx";
 import {Sleep} from "../polyfills/Sleep";
 import {StringContains} from "../polyfills/PrimitiveUtils";
 import * as GoogleAnalytics from "react-ga";
-import {GoogleAnalyticsTags} from "../../../../client-web/config";
+import {GoogleAnalyticsTag} from "@project/client-web/config";
 import {MobxPersistOld} from "../polyfills/MobxPersistOld";
 import {EventStore} from "./EventStore";
 import {TimeNow} from "../polyfills/TimeNow";
@@ -25,19 +25,13 @@ export interface Route {
 
 export class RoutingStoreClass {
   constructor() {
-    if (this.isWeb && GoogleAnalyticsTags.web) {
-      this.googleAnalyticsId = GoogleAnalyticsTags.web;
-      GoogleAnalytics.initialize(GoogleAnalyticsTags.web);
-    }
-    if (!this.isWeb && GoogleAnalyticsTags.native) {
-      this.googleAnalyticsId = GoogleAnalyticsTags.native;
-      GoogleAnalytics.initialize(GoogleAnalyticsTags.native);
+    if (GoogleAnalyticsTag) {
+      this.googleAnalyticsId = GoogleAnalyticsTag;
+      GoogleAnalytics.initialize(GoogleAnalyticsTag);
     }
   }
   persistedFields = ["route", "routeHistory", "routeHistoryHrefs"];
   isHydrated = false;
-
-  isWeb = !!window;
 
   @observable
   routeHistory: Route[] = [];

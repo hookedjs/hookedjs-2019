@@ -1,7 +1,6 @@
-import {Device} from "../schema/Device";
-import {IpgeolocationioKey} from "../../../../client-web/config";
+import {IpgeolocationioKey} from "@project/client-web/config";
 
-export interface GeoIntel {
+export interface GeoIntelRaw {
   ip: "71.179.91.210";
   continent_code: "NA";
   continent_name: "North America";
@@ -38,12 +37,30 @@ export interface GeoIntel {
   };
 }
 
-export const UserGetDeviceInfo = (): Promise<Device> => {
+export interface GeoIntel {
+  ip: string;
+  continent: string;
+  country: string;
+  state: string;
+  city: string;
+  lat: number;
+  lon: number;
+  is_eu: boolean;
+  language: string;
+  languages: string;
+  geoname: number;
+  currency: string;
+  tz: string;
+  tz_offset: number;
+  uagent: string;
+}
+
+export const UserGetDeviceInfo = (): Promise<GeoIntel> => {
   if (!IpgeolocationioKey) throw new Error("UserGetDeviceInfo: Cannot call without Config.IpgeolocationioKey");
   return fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${IpgeolocationioKey}`, {method: "get"})
     .then(async (response) => {
       if (response.status !== 200) throw new Error("Response not 200.");
-      const geoIntel: GeoIntel = await response.json();
+      const geoIntel: GeoIntelRaw = await response.json();
       return {
         ip: geoIntel.ip,
         continent: geoIntel.continent_code,

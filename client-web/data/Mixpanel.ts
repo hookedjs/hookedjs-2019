@@ -1,6 +1,6 @@
 // var mixpanel = require('mixpanel-browser');
 import mixpanel from "mixpanel-browser";
-import {MixpanelTag} from "../../../../client-web/config";
+import {MixpanelTag} from "@project/client-web/config";
 
 mixpanel.init(MixpanelTag);
 

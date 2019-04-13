@@ -28,7 +28,7 @@ const shell = require('shelljs');
 
 // variables
 const sourcePath = path.resolve(__dirname);
-const projectPath = path.resolve(__dirname, '../../../');
+const projectPath = path.resolve(__dirname, '../project');
 const pagesPath = path.join(projectPath, './client-web/pages');
 const pages = fs.readdirSync(pagesPath).map(p => p.split(".tsx")[0]);
 const outPath = path.join(projectPath, './client-web/build');
@@ -77,7 +77,7 @@ module.exports = {
       path.resolve(projectPath, `./node_modules`)
     ],
     alias: {
-      "~": sourcePath,
+      // "~": sourcePath,
       "@project": projectPath,
     }
   },
