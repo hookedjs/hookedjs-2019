@@ -1,7 +1,7 @@
 {
   "name": "hookedjs",
   "author": "Brian Dombrowski <bdombro@gmail.com>",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "license": "ISC",
   "scripts": {
     "postinstall": "ln -s ../../ project; exit 0",
