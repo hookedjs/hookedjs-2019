@@ -1,9 +1,10 @@
 {
   "name": "hookedjs",
   "author": "Brian Dombrowski <bdombro@gmail.com>",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": "ISC",
   "scripts": {
+    "preinstall": "ln -s ../../ project",
     "upgrade-hard": "npx ncu -u && yarn && yarn upgrade",
     "bootstrap": "NODE_ENV=development lerna bootstrap",
     "prettier": "prettier --loglevel warn --write \"{client-web/src,server-koa2/src}/**/*.{ts,tsx,css,json,md,js}\"",
