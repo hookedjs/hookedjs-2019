@@ -2,8 +2,7 @@ import React from "react";
 import { Box, Button } from "rebass";
 import { observable, reaction, set, toJS } from "mobx";
 import { observer, useObservable } from "mobx-react-lite";
-import isEmail from 'validator/lib/isEmail';
-// import {Axios} from "hookedjs/client-web/data/Axios";
+import {isEmail, normalizeEmail} from "validator";
 import { MobxPersist } from "hookedjs/client-web/polyfills/MobxPersist";
 import { SuccessIcon } from "../primitives/SuccessIcon";
 import { LeadProfile } from "../state/LeadProfile";
@@ -17,7 +16,8 @@ export const state = observable({
   },
   submitted: false,
   loading: false,
-  errors: []
+  errors: [],
+  errorMessage: "",
 });
 MobxPersist("ContactFormState", state).then(() => {
   // Keep form up to date with lead intel
@@ -34,6 +34,7 @@ export const ContactForm = observer(({}: props) => {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    set(_state, { ..._state, errors: [], errorMessage: "", loading: true });
 
     // Cheap validation TODO: Implement full validation
     const optionalFields: string[] = [];
@@ -41,9 +42,18 @@ export const ContactForm = observer(({}: props) => {
       .filter(([key, value]) => !value && !optionalFields.includes(key))
       .map(([key, value]) => key);
     if (!isEmail(_state.form.email)) errors.push("email");
-    // @ts-ignore: Ingore unset type for now
-    if (errors.length) {_state.errors = errors; return;}
-    set(_state, { ..._state, errors: [], loading: true });
+    if (errors.length) {
+      set(_state, {
+        ..._state,
+        loading: false,
+        errors: errors,
+        errorMessage: "Please correct the highlighted fields above.",
+      });
+      return;
+    }
+
+    set(_state.form, { ..._state.form, email: normalizeEmail(_state.form.email), });
+
 
     // Update LeadProfile
     set(LeadProfile, { ...LeadProfile, name: _state.form.name, email: _state.form.email });
@@ -64,6 +74,7 @@ export const ContactForm = observer(({}: props) => {
     //   .catch(function(error) {
     //     set(_state, {
     //       loading: false,
+    //       errorMessage: `Error: ${JSON.stringify(error.response.data.message, null, '\t')}`,
     //     });
     //   });
 
@@ -122,6 +133,13 @@ export const ContactForm = observer(({}: props) => {
               onChange={(e) => (_state.form.message = e.target.value)}
               // error={_state.errors.includes("message") && !_state.form.message}
             />
+
+            {_state.errorMessage && (
+              <div style={{color: "red"}}>
+                <pre>{_state.errorMessage}</pre>
+              </div>
+            )}
+
             <Button
               disabled={_state.loading}
               onClick={onSubmit}

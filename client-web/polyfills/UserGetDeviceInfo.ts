@@ -1,4 +1,4 @@
-import {IpgeolocationioKey} from "@project/client-web/config";
+import {IpgeolocationioKey} from "../../boilerplate/client-web/config";
 
 export interface GeoIntelRaw {
   ip: "71.179.91.210";

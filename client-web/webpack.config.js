@@ -18,6 +18,7 @@ const devMode = !['production','staging'].includes(process.env.NODE_ENV);
 
 const path = require('path');
 const fs = require('fs');
+const PackageJsonConfig = require('../package.json');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
@@ -123,9 +124,12 @@ module.exports = {
     new HtmlWebpackPlugin({ template: path.resolve(projectPath, "client-web/static/index.html") }),
     new webpack.DefinePlugin({
       // This will replace env variables during build
-      'process.env': JSON.stringify(process.env),
-      'PAGES': JSON.stringify(pages),
-      'PROJECT_PATH': projectPath,
+      'process.env': JSON.stringify({
+        ...process.env,
+        'VERSION': PackageJsonConfig.version,
+        'BUILD_TIMESTAMP': now,
+        'PAGES': JSON.stringify(pages),
+      }),
     }),
     process.env.ANALYZE ? new BundleAnalyzerPlugin() : () => null,
     new MiniCssExtractPlugin({

@@ -47,7 +47,7 @@ export const Router = () => {
     <ThemeProvider theme={Theme}>
       <BrowserRouter>
         <Switch>
-          {PAGES.map(page => (
+          {Array.isArray(process.env.PAGES) && process.env.PAGES.map(page => (
             <Route
               key={`route-${page}`}
               exact

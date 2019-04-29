@@ -1,4 +1,6 @@
-// Import dependencies
+/**
+ * Note: This package is large so only use if you really need caching.
+ */
 import {setup} from "axios-cache-adapter";
 import * as localforage from "localforage";
 import memoryDriver from "localforage-memoryStorageDriver";
