@@ -11,7 +11,6 @@
     "types": "tsc --noEmit",
     "types:watch": "tsc --noEmit --watch",
     "server:koa2": "cd server-koa2; yarn start",
-    "server:hasura": "cd server-hasura && yarn dev",
     "build": ". ./.env && lerna run --parallel lerna:build",
     "start": "yarn build && yarn server:koa2",
     "dev": "cd client-web; webpack-dev-server --mode development --port 3001 --progress --inline --hot --colors",
