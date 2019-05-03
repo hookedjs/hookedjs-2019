@@ -43,17 +43,20 @@ const RouteInnerWrapper = ({ routeProps, children }: RouteInnerWrapperProps) => 
 export const Router = () => {
   const SuspenseFallback = <LoadingPage/>;
 
+  const pages = JSON.parse(process.env.PAGES as string);
+  if (!Array.isArray(pages)) throw new Error("No pages have been detected.");
+
   return (
     <ThemeProvider theme={Theme}>
       <BrowserRouter>
         <Switch>
-          {Array.isArray(process.env.PAGES) && process.env.PAGES.map(page => (
+          {pages.map(page => (
             <Route
               key={`route-${page}`}
               exact
               path={page === "Index" ? "/" : `/${paramCase(page)}`}
               render={(routeProps) => {
-                console.log(`@project/client-web/pages/${page}`)
+                console.log(`@project/client-web/pages/${page}`);
                 const PageModule = React.lazy(() => import(`@project/client-web/pages/${page}`));
                 return (
                   <RouteInnerWrapper routeProps={routeProps}>

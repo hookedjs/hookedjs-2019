@@ -2,4 +2,4 @@
  * Entry Point of the Application
  *
  */
-import "./core/Server.example";
+import "hookedjs/server-koa2/src/Server.example";

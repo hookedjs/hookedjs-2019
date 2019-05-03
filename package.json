@@ -13,7 +13,10 @@
     "server:koa2": "cd server-koa2; yarn start",
     "build": ". ./.env && lerna run --parallel lerna:build",
     "start": "yarn build && yarn server:koa2",
-    "dev": "cd client-web; webpack-dev-server --mode development --port 3001 --progress --inline --hot --colors",
+    "dev:web": "cd client-web; webpack-dev-server --mode development --port 3001 --progress --inline --hot --colors",
+    "dev:koa": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --transpileOnly project/server-koa2/Server.ts",
+    "dev:postgres": "cd server-postgres && docker-compose up --build",
+    "dev": "concurrently --kill-others npm:dev:postgres npm:dev:web npm:dev:koa",
     "test": ". ./.env && lerna run --parallel lerna:test",
     "clean": ". ./.env && lerna run --parallel lerna:clean",
     "serve-abandoned": "concurrently --kill-others npm:server:koa2 npm:client:web npm:playground"
@@ -149,5 +152,8 @@
     "node": ">11.7",
     "npm": ">=9999.0.0",
     "yarn": ">=1.9.4"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
   }
 }

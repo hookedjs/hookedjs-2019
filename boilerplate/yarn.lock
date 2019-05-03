@@ -1487,6 +1487,11 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
 
+"@vtex/phone@^4.8.1":
+  version "4.8.2"
+  resolved "https://registry.yarnpkg.com/@vtex/phone/-/phone-4.8.2.tgz#1a0b14cd6ac3c447d29f9a47bdedb4c9922d6846"
+  integrity sha512-eM9J9/ttCdxycw57eP8uFKIWpVskGmcS5gyHHQCne0gYvm2It/EivikcUnb7LoqNcxhiEtO/o03GNLwvamSC4A==
+
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"
@@ -6778,10 +6783,10 @@ homedir-polyfill@^1.0.1:
   dependencies:
     parse-passwd "^1.0.0"
 
-hookedjs@~2.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/hookedjs/-/hookedjs-2.0.3.tgz#23207b186425b3e367c2b7864d2d8bfdbbe82b60"
-  integrity sha512-eGVhNBAUFhCYnIIAIc03FaBtIY2jZF+Xl4dUMAit501miAgC3DW+4wDeldwxp5JGMGfQGVrEZuhslkqeM0dFbA==
+hookedjs@^2.0.7:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/hookedjs/-/hookedjs-2.1.0.tgz#5d502212a0f814ca2a34e240711c3881914122c2"
+  integrity sha512-mpeh6dGL8+ZM40sLCw1qRgwYx5GNb98ZQwKiXHXabduJJAEajYx19FXytLf9PfE/JMUxxq3BwnKolgOe0IMcOw==
   dependencies:
     "@babel/core" "^7.4.3"
     "@babel/plugin-proposal-class-properties" "^7.4.0"
@@ -6818,6 +6823,7 @@ hookedjs@~2.0:
     "@types/styled-jsx" "^2.2.8"
     "@types/validator" "^10.11.0"
     "@types/webpack" "^4.4.27"
+    "@vtex/phone" "^4.8.1"
     apollo-boost "^0.3.1"
     array-intersection "^0.1.2"
     axios "^0.18.0"
@@ -6875,7 +6881,6 @@ hookedjs@~2.0:
     query-string "^6.4.2"
     react "^16.8.6"
     react-dom "npm:@hot-loader/react-dom"
-    react-ga "^2.5.7"
     react-helmet "5.2.0"
     react-hot-loader "^4.8.3"
     react-icons "^3.5.0"
@@ -12318,11 +12323,6 @@ react-error-overlay@^5.1.4:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.4.tgz#88dfb88857c18ceb3b9f95076f850d7121776991"
   integrity sha512-fp+U98OMZcnduQ+NSEiQa4s/XMsbp+5KlydmkbESOw4P69iWZ68ZMFM5a2BuE0FgqPBKApJyRuYHR95jM8lAmg==
-
-react-ga@^2.5.7:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.7.tgz#1c80a289004bf84f84c26d46f3a6a6513081bf2e"
-  integrity sha512-UmATFaZpEQDO96KFjB5FRLcT6hFcwaxOmAJZnjrSiFN/msTqylq9G+z5Z8TYzN/dbamDTiWf92m6MnXXJkAivQ==
 
 react-helmet@5.2.0:
   version "5.2.0"

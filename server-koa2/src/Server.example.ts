@@ -1,13 +1,12 @@
 import * as http from "http";
 import * as Koa from "koa";
 import * as pg from "pg";
-import {SanitiseEnv} from "~/core/Utils";
-import {InstallStandardKoaMiddlewares} from "~/core/middleware/InstallStandardKoaMiddlewares";
-import {InstallSession} from "~/core/middleware/InstallSession";
-import {InstallPassport} from "~/core/middleware/InstallPassport";
-import {InstallHasura} from "~/core/middleware/InstallHasura";
-import {InstallRestApi} from "~/core/middleware/InstallRestApi";
-import {InstallWebApp} from "~/core/middleware/InstallWebApp";
+import {SanitiseEnv} from "./Utils";
+import {InstallStandardKoaMiddlewares} from "./middleware/InstallStandardKoaMiddlewares";
+import {InstallSession} from "./middleware/InstallSession";
+import {InstallPassport} from "./middleware/InstallPassport";
+import {InstallRestApi} from "./middleware/InstallRestApi";
+import {InstallWebApp} from "./middleware/InstallWebApp";
 
 SanitiseEnv();
 
@@ -22,8 +21,7 @@ InstallStandardKoaMiddlewares(app);
 InstallSession(app);
 InstallPassport(app, {rootPgPool});
 InstallRestApi(app);
-InstallHasura(app);
 InstallWebApp(app);
 
 server.listen(3000);
-console.log(`Listening on port 3000);
+console.log(`Listening on port 3000`);
