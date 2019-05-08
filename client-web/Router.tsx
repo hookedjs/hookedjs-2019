@@ -1,5 +1,5 @@
-import React from "react";
-import { Switch, Route, RouteComponentProps } from "react-router-dom";
+import React, { useEffect, Fragment } from "react";
+import { withRouter, Route, RouteComponentProps } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import * as qs from "query-string";
 import { paramCase } from "change-case";
@@ -9,6 +9,25 @@ import { TimeNow } from "./polyfills/TimeNow";
 import Theme from "@project/client-web/Theme";
 import { Error as ErrorPage } from "@project/client-web/pages/Error";
 import { Loading as LoadingPage } from "@project/client-web/pages/Loading";
+
+import TransitionSwitch from "react-router-transition-switch";
+import Fader from "react-fader";
+import { Sleep } from "./polyfills/Sleep";
+
+const ScrollToTop = withRouter(({ history }) => {
+  useEffect(() => {
+    const unlisten = history.listen(async () => {
+      await Sleep(180);
+      window.scrollTo(0, 0);
+    });
+    return () => {
+      unlisten();
+    };
+  }, []);
+
+  return (null);
+});
+
 
 type RouteInnerWrapperProps = {
   routeProps: RouteComponentProps;
@@ -49,28 +68,31 @@ export const Router = () => {
   return (
     <ThemeProvider theme={Theme}>
       <BrowserRouter>
-        <Switch>
-          {pages.map(page => (
-            <Route
-              key={`route-${page}`}
-              exact
-              path={page === "Index" ? "/" : `/${paramCase(page)}`}
-              render={(routeProps) => {
-                console.log(`@project/client-web/pages/${page}`);
-                const PageModule = React.lazy(() => import(`@project/client-web/pages/${page}`));
-                return (
-                  <RouteInnerWrapper routeProps={routeProps}>
-                    <React.Suspense fallback={SuspenseFallback}>
-                      <PageModule/>
-                    </React.Suspense>
-                  </RouteInnerWrapper>
-                );
-              }}
-            />
-          ))}
+        <Fragment>
+          <ScrollToTop/>
+          <TransitionSwitch component={Fader}>
+            {pages.map(page => (
+              <Route
+                key={`route-${page}`}
+                exact
+                path={page === "Index" ? "/" : `/${paramCase(page)}`}
+                render={(routeProps) => {
+                  console.log(`@project/client-web/pages/${page}`);
+                  const PageModule = React.lazy(() => import(`@project/client-web/pages/${page}`));
+                  return (
+                    <RouteInnerWrapper routeProps={routeProps}>
+                      <React.Suspense fallback={SuspenseFallback}>
+                        <PageModule/>
+                      </React.Suspense>
+                    </RouteInnerWrapper>
+                  );
+                }}
+              />
+            ))}
 
-          <Route render={(props) => <RouteInnerWrapper routeProps={props}><ErrorPage/></RouteInnerWrapper>}/>
-        </Switch>
+            <Route render={(props) => <RouteInnerWrapper routeProps={props}><ErrorPage/></RouteInnerWrapper>}/>
+          </TransitionSwitch>
+        </Fragment>
       </BrowserRouter>
     </ThemeProvider>
   );
